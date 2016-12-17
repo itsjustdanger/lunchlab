@@ -3,10 +3,22 @@
 {% block main %}
 <h1>Restaurants</h1>
 
+<h2>Try something new!</h2>
 <ul>
   {% for restaurant in restaurants %}
     <li>
       <a href="{% url 'show' restaurant.id %}">{{ restaurant.name }}</a>
+
+    </li>
+  {% endfor %}
+
+</ul>
+
+<h2>Try something again!</h2>
+<ul>
+  {% for visit in visited %}
+    <li>
+      <a href="{% url 'show' visit.id %}">{{ visit.name }}</a>
     </li>
   {% endfor %}
 </ul>

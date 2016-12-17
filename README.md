@@ -24,7 +24,7 @@ Development of *LunchLab* is going to be split into self-contained phases.
 ## Phase 2
 #### Visiting
   - Users can 'visit' restaurants
-  - Users can see all of their visited restaurants
+  - ~Users can see all of their visited restaurants~
 
 #### Reviews
   - Users can review 'visited' restaurants
