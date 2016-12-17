@@ -19,9 +19,7 @@ Development of *LunchLab* is going to be split into self-contained phases.
 ## Phase 1
 #### Restaurants and Users
   - ~Users can view list of restaurants~
-  - Users can view an individual restaurant's page
-  - Admins can create restaurants
-
+  - ~Users can view an individual restaurant's page~
 
 ## Phase 2
 #### Visiting
@@ -34,7 +32,8 @@ Development of *LunchLab* is going to be split into self-contained phases.
 
 
 ## Phase 3
-#### New Restaurants
+#### Admins and New Restaurants
+  - Only Admins can create restaurants
   - When adding restaurants, restaurant name is auto-completed
   - When adding restaurants, lat/lng is returned
   - When adding restaurants, handle incorrect addresses
