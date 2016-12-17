@@ -18,7 +18,8 @@ Development of *LunchLab* is going to be split into self-contained phases.
 
 ## Phase 1
 #### Restaurants and Users
-  - Users can view restaurants
+  - ~Users can view list of restaurants~
+  - Users can view an individual restaurant's page
   - Admins can create restaurants
 
 
