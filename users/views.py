@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -22,3 +23,26 @@ def sign_out(request):
 
 def sign_in(request):
     return render(request, 'users/sign-in.html')
+
+def new(request):
+    return render(request, 'users/new.html')
+
+def create(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    first_name = request.POST['first-name']
+    last_name = request.POST['last-name']
+    email = request.POST['email']
+
+    user = User.objects.create_user(username=username,
+                                    password=password,
+                                    first_name=first_name,
+                                    last_name=last_name,
+                                    email=email)
+                                    
+    if user is not None:
+        login(request, user)
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        return render(request, 'users/new.html',
+            {'error_message': 'Somethin went wrong...'})
