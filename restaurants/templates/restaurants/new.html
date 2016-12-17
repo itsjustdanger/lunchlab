@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block main %}
 <h1>New Restaurant</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
@@ -8,3 +11,4 @@
   <label for="name">Restaurant Name</label>
   <input type="submit" value="Create">
 </form>
+{% endblock %}

@@ -39,7 +39,7 @@ def create(request):
                                     first_name=first_name,
                                     last_name=last_name,
                                     email=email)
-                                    
+
     if user is not None:
         login(request, user)
         return HttpResponseRedirect(reverse('index'))
