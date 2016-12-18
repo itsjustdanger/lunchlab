@@ -5,6 +5,7 @@
 
 {% if restaurant.visited %}
   <p>You've been here!</p>
+
 {% else %}
   <p>Have you already visited?</p><a href="{% url 'visit' restaurant.id %}">Visited</p>
 {% endif %}
