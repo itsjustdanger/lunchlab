@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest, HttpResponseForbidden
 from reviews.models import Review
 
@@ -12,8 +12,8 @@ def index(request):
         reviews.append({
             'title': r.title,
             'body': r.body,
-            'user': r.user_id,
-            'restaurant': r.restaurant_id
+            'userId': r.user_id,
+            'restaurantId': r.restaurant_id
         })
 
     return JsonResponse(reviews, safe=False)
@@ -24,8 +24,8 @@ def show(request, id):
     review = {
         'title': r.title,
         'body': r.body,
-        'user': r.user_id,
-        'restaurant': r.restaurant_id
+        'userId': r.user_id,
+        'restaurantId': r.restaurant_id
     }
 
     return JsonResponse(review, safe=False)
@@ -36,8 +36,9 @@ def new(request):
 
     user = request.user
     data = json.loads(request.BODY)
+    restaurant = data['restaurantId']
     review = Review(title=data['title'], body=data['body'], user=user,
-                        restaurant=data['restaurant'])
+                        restaurant=restaurant)
 
     try:
         review.save()
