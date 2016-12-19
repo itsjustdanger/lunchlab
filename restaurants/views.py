@@ -1,5 +1,7 @@
+import json
+
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
 from django.urls import reverse
 from restaurants.models import Restaurant, Visit
 from django.core import serializers
@@ -39,20 +41,28 @@ def show(request, id):
     return JsonResponse(restaurant, safe=False)
 
 def new(request):
-    name = request.POST['name']
-    new_restaurant = Restaurant(name=name)
+    data = json.loads(request.BODY)
+    new_restaurant = Restaurant(name=data['name'])
 
     try:
         new_restaurant.save()
     except:
-        return render(request, 'restaurants/new.html',
-            {'error_message': 'There was an error creating the new restaurant.'}
-        )
+        return HttpResponseBadRequest
 
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponse('OK')
 
 def edit(request, id):
-    pass
+    data = json.loads(request.BODY)
+    restaurant = get_object_or_404(Restaurant, id=id)
+
+    restaurant.name = data['name']
+
+    try:
+        new_restaurant.save()
+    except:
+        return HttpResponseBadRequest
+
+    return HttpResponse('OK')
 
 def visit(request, id):
     user = request.user if request.user.is_authenticated() else None
