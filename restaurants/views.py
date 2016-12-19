@@ -1,38 +1,44 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from restaurants.models import Restaurant, Visit
+from django.core import serializers
 
-# Create your views here.
+
 def index(request):
     user = request.user if request.user.is_authenticated() else None
-    visited = set()
+    visited = set(user.visited_restaurants.all()) if user else set()
 
-    if user:
-        for restaurant in user.visited_restaurants.all():
-            visited.add(restaurant)
+    restaurants = []
 
-    restaurants = [r for r in Restaurant.objects.all() if r not in visited]
+    for r in Restaurant.objects.all():
+        restaurants.append({
+            'id': r.id,
+            'name': r.name,
+            'visited': r in visited
+        })
 
-    return render(request, 'restaurants/index.html',
-        {'restaurants': restaurants, 'visited': visited})
+    return JsonResponse(restaurants, safe=False)
 
 def show(request, id):
     user = request.user if request.user.is_authenticated() else None
 
     try:
-        restaurant = user.visited_restaurants.get(id=id)
-        restaurant.visited = True
+        r = user.visited_restaurants.get(id=id)
+        r.visited = True
     except:
-        restaurant = get_object_or_404(Restaurant, pk=id)
-        restaurant.visited = False
+        r = get_object_or_404(Restaurant, pk=id)
+        r.visited = False
 
-    return render(request, 'restaurants/show.html', {'restaurant': restaurant})
+    restaurant = {
+        'id': r.id,
+        'name': r.name,
+        'visited': r.visited
+    }
+
+    return JsonResponse(restaurant, safe=False)
 
 def new(request):
-    return render(request, 'restaurants/new.html')
-
-def create(request):
     name = request.POST['name']
     new_restaurant = Restaurant(name=name)
 
@@ -44,6 +50,9 @@ def create(request):
         )
 
     return HttpResponseRedirect(reverse('index'))
+
+def edit(request, id):
+    pass
 
 def visit(request, id):
     user = request.user if request.user.is_authenticated() else None
