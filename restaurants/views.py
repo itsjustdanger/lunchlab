@@ -4,13 +4,11 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
 from django.urls import reverse
 from restaurants.models import Restaurant, Visit
-from django.core import serializers
 
 
 def index(request):
     user = request.user if request.user.is_authenticated() else None
     visited = set(user.visited_restaurants.all()) if user else set()
-
     restaurants = []
 
     for r in Restaurant.objects.all():
@@ -42,10 +40,10 @@ def show(request, id):
 
 def new(request):
     data = json.loads(request.BODY)
-    new_restaurant = Restaurant(name=data['name'])
+    restaurant = Restaurant(name=data['name'])
 
     try:
-        new_restaurant.save()
+        restaurant.save()
     except:
         return HttpResponseBadRequest
 
