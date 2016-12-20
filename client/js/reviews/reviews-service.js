@@ -3,7 +3,7 @@ var RestaurantsService = function($http) {
 };
 
 RestaurantsService.prototype.getReviews = function(restaurantId) {
-  return this._$http.get('api/reviews/?restaurant=' + resourceId);
+  return this._$http.get('/api/reviews/?restaurant=' + restaurantId);
 };
 
 module.exports = RestaurantsService;

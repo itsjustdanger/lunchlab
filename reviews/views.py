@@ -5,6 +5,7 @@ from reviews.models import Review
 
 
 def index(request):
+    user = request.user if request.user.is_authenticated() else None
     restaurant_id = request.GET.get('restaurant', '')
     reviews = []
 
@@ -13,18 +14,21 @@ def index(request):
             'title': r.title,
             'body': r.body,
             'userId': r.user_id,
+            'isUserReview': (user and r.user_id == user.id),
             'restaurantId': r.restaurant_id
         })
 
     return JsonResponse(reviews, safe=False)
 
 def show(request, id):
+    user = request.user if request.user.is_authenticated() else None
     r = get_object_or_404(Review, id=id)
 
     review = {
         'title': r.title,
         'body': r.body,
         'userId': r.user_id,
+        'isUserReview': (user and r.user_id == user.id),
         'restaurantId': r.restaurant_id
     }
 

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.urls import reverse
 from restaurants.models import Restaurant
+from reviews.models import Review
 
 def restaurant_detail(request, id):
     user = request.user if request.user.is_authenticated() else None
@@ -13,4 +14,6 @@ def restaurant_detail(request, id):
         restaurant = get_object_or_404(Restaurant, pk=id)
         restaurant.visited = False
 
-    return render(request, 'restaurants/show.html', {'restaurant': restaurant})
+    reviews = Review.objects.filter(restaurant_id=id)
+
+    return render(request, 'restaurants/show.html', {'restaurant': restaurant, 'reviews': reviews})
