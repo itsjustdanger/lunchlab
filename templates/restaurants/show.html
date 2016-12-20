@@ -4,6 +4,11 @@
   <input type="hidden" id="restaurant-id" value="{{restaurant.id}}">
   <h2>{{ restaurant.name }}</h2>
   <div ng-controller="reviewsController as ctrl">
+    <h3>{{ restaurant.name }} Reviews</h3>
+    {% if not restaurant.user_reviewed and restaurant.visited %}
+      <p>Why don't you review your visit to {{ restaurant.name }}?</p>
+    {% endif %}
+
     <ul>
       <li ng-repeat="review in ctrl.reviews">
         <review data="review"></review>

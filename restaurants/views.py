@@ -26,10 +26,11 @@ def show(request, id):
     try:
         r = user.visited_restaurants.get(id=id)
         r.visited = True
+        r.user_reviewed = not not Review.objects.filter(user_id=user.id, restuarant_id=id)
     except:
         r = get_object_or_404(Restaurant, pk=id)
         r.visited = False
-
+        r.user_reviewd = False
     restaurant = {
         'id': r.id,
         'name': r.name,

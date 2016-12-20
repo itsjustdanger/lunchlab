@@ -5,6 +5,7 @@
     <li ng-repeat='restaurant in ctrl.restaurants'>
       <restaurant data="restaurant"></restaurant>
       <a ng-if="!restaurant.visited" ng-click="ctrl.visit($index)">Been Here?</a>
+      <span ng-if="restaurant.visited">You've been here before!</span>
     </li>
   </ul>
 {% endblock %}
