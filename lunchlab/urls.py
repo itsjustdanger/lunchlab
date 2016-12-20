@@ -27,4 +27,6 @@ urlpatterns = [
 
     url(r'^api/reviews/', include('reviews.urls')),
     url(r'^api/restaurants/', include('restaurants.urls')),
+    url(r'^api/comments/', include('comments.urls')),
+
 ]

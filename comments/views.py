@@ -13,7 +13,7 @@ def index(request):
         comments.append({
             'userName': c.user_name,
             'userId': c.user_id,
-            'reviewId': c.review_id
+            'reviewId': c.review_id,
             'body': c.body
         })
 
@@ -39,7 +39,7 @@ def new(request):
 
 def delete(request, id):
     comment = get_object_or_404(Comment, id=id)
-    if not request.user.is_authenticated() /
+    if not request.user.is_authenticated() \
     or comment.user_id != request.user.id:
         return HttpResponseForbidden
 
