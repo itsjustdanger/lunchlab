@@ -4,7 +4,6 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpRe
 from reviews.models import Review
 from restaurants.models import Restaurant
 
-
 def index(request):
     user = request.user if request.user.is_authenticated() else None
     restaurant_id = request.GET.get('restaurant', '')
@@ -12,6 +11,7 @@ def index(request):
 
     for r in Review.objects.filter(restaurant_id=restaurant_id):
         reviews.append({
+            'id': r.pk,
             'title': r.title,
             'body': r.body,
             'userId': r.user_id,
@@ -26,6 +26,7 @@ def show(request, id):
     r = get_object_or_404(Review, id=id)
 
     review = {
+        'id': r.pk,
         'title': r.title,
         'body': r.body,
         'userId': r.user_id,

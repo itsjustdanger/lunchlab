@@ -1,3 +1,12 @@
 <h3>{[review.title]}</h3>
 <span ng-if="review.isUserReview">You wrote this</span>
 <p>{[review.body]}</p>
+
+<div ng-controller="commentsController as ctrl">
+  <a ng-click="ctrl.getComments(review.id)">Load Comments</a>
+  <ul ng-if="ctrl.showComments">
+    <li ng-repeat="comment in ctrl.comments">
+      <comment data="comment"></comment>
+    </li>
+  </ul>
+</div>

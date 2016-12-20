@@ -1,4 +1,4 @@
-var CommentsService = function($ttp) {
+var CommentsService = function($http) {
   this._$http = $http;
 };
 

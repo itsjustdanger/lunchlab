@@ -3,13 +3,14 @@ import json
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest, HttpResponseForbidden
 from reviews.models import Review
+from comments.models import Comment
 
 def index(request):
     user = request.user if request.user.is_authenticated() else None
     review_id = request.GET.get('review', '')
     comments = []
 
-    for c in Comments.objects.filter(review_id=review_id):
+    for c in Comment.objects.filter(review_id=review_id):
         comments.append({
             'userName': c.user_name,
             'userId': c.user_id,

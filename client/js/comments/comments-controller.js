@@ -3,13 +3,16 @@ var CommentsController = function(commentsService) {
   this.comments = [];
   this.newComment = {body: ''};
   this.newCommentErrors = [];
+  this.showComments = false;
 };
 
 CommentsController.prototype.getComments = function(reviewId) {
+
   this._commentsService
     .getComments(reviewId)
     .then(function success (response) {
       this.comments = response.data;
+      this.showComments = true;
     }.bind(this));
 };
 
