@@ -1,6 +1,22 @@
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+.DS_Store
+*.py[cod]
+*.swp
 
+/.*
+!/.gitignore
+!/.gitmodules
 
 # Distribution / packaging
-node_modules/
+.Python
+env/
 static/
+node_modules/
+
+# Auth Secrets
+secrets.json
+
+# Django stuff:
+*.log

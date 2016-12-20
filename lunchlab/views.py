@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from django.urls import reverse
 from restaurants.models import Restaurant
 from reviews.models import Review
 
