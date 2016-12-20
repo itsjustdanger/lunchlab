@@ -23,6 +23,7 @@ var browserSync = require('browser-sync');
 var watchify = require('watchify');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var angularTemplateCache = require('gulp-angular-templatecache');
 // image optimization
 var imagemin = require('gulp-imagemin');
 // linting
@@ -54,6 +55,14 @@ var handleError = function(task) {
 // CUSTOM TASK METHODS
 // --------------------------
 var tasks = {
+  // --------------------------
+  // Cache Angular Templates
+  // --------------------------
+  prepareTemplates: function() {
+    return gulp.src('./client/js/*/*.html')
+      .pipe(gulp.dest('static/templates/'));
+  },
+
   // --------------------------
   // Delete build folder
   // --------------------------
@@ -168,7 +177,7 @@ gulp.task('reload-sass', ['sass'], function(){
 gulp.task('reload-js', ['browserify'], function(){
   browserSync.reload();
 });
-gulp.task('reload-templates', ['templates'], function(){
+gulp.task('reload-templates', ['prepareTemplates'], function(){
   browserSync.reload();
 });
 
@@ -179,6 +188,7 @@ gulp.task('clean', tasks.clean);
 // for production we require the clean method on every individual task
 var req = build ? ['clean'] : [];
 // individual tasks
+gulp.task('prepareTemplates', req, tasks.prepareTemplates);
 gulp.task('assets', req, tasks.assets);
 gulp.task('sass', req, tasks.sass);
 gulp.task('browserify', req, tasks.browserify);
@@ -188,7 +198,7 @@ gulp.task('optimize', tasks.optimize);
 // --------------------------
 // DEV/WATCH TASK
 // --------------------------
-gulp.task('watch', ['assets', 'sass', 'lint:js', 'browserify'], function() {
+gulp.task('watch', ['assets', 'sass', 'lint:js', 'prepareTemplates', 'browserify'], function() {
 
   // --------------------------
   // watch:sass
@@ -200,6 +210,10 @@ gulp.task('watch', ['assets', 'sass', 'lint:js', 'browserify'], function() {
   // --------------------------
   gulp.watch('./client/js/**/*.js', ['lint:js', 'reload-js']);
 
+  // ---------------------------
+  // watch templates
+  // ---------------------------
+  gulp.watch('./client/js/*/*.html', ['reload-templates']);
 
   gutil.log(gutil.colors.bgGreen('Watching for changes...'));
 });
@@ -209,6 +223,7 @@ gulp.task('build', [
   'clean',
   'assets',
   'sass',
+  'prepareTemplates',
   'browserify'
 ]);
 

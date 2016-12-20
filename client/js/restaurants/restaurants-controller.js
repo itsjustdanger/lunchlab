@@ -1,5 +1,5 @@
 var RestaurantsController = function(restaurantsService) {
-  this._restaurantsService = restaurantsService
+  this._restaurantsService = restaurantsService;
   this.restaurants = [];
 
   this.getRestaurants();
@@ -7,8 +7,8 @@ var RestaurantsController = function(restaurantsService) {
 
 RestaurantsController.prototype.getRestaurants = function() {
 
-  this._restaurantsService.getRestaurants().
-    then(function success(response) {
+  this._restaurantsService.getRestaurants()
+    .then(function success(response) {
 
       this.restaurants = response.data;
     }.bind(this));

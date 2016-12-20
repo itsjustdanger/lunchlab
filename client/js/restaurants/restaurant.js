@@ -1,11 +1,11 @@
 var Restaurant = function() {
   return {
-    template: '<a href="/restaurants/{[restaurant.id]}">{[restaurant.name]}</a>',
+    templateUrl: './static/templates/restaurants/restaurant.html',
     restrict: 'E',
     scope: {
       restaurant: '=data'
     }
-  }
+  };
 };
 
 module.exports = Restaurant;
