@@ -1,14 +1,14 @@
-var RestaurantsService = function($http) {
+var ReviewsService = function($http) {
   this._$http = $http;
 };
 
-RestaurantsService.prototype.getReviews = function(restaurantId) {
+ReviewsService.prototype.getReviews = function(restaurantId) {
   return this._$http.get('/api/reviews/?restaurant=' + restaurantId);
 };
 
-RestaurantsService.prototype.submitNewReview = function(newReview) {
+ReviewsService.prototype.submitNewReview = function(newReview) {
   var url = '/api/reviews/new/?restaurant=' + newReview.restaurantId + '/';
-  console.log(newReview);
+  
   return this._$http({
     method  : 'POST',
     url     : url,
@@ -16,4 +16,4 @@ RestaurantsService.prototype.submitNewReview = function(newReview) {
   });
 };
 
-module.exports = RestaurantsService;
+module.exports = ReviewsService;

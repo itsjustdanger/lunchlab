@@ -8,7 +8,8 @@ var ReviewsController = function(reviewsService) {
 };
 
 ReviewsController.prototype.getReviews = function(restaurantId) {
-  this._reviewsService.getReviews(restaurantId)
+  this._reviewsService
+    .getReviews(restaurantId)
     .then(function success (response) {
 
       this.reviews = response.data;
@@ -16,9 +17,6 @@ ReviewsController.prototype.getReviews = function(restaurantId) {
 };
 
 ReviewsController.prototype.submitNewReview = function() {
-  console.log('test');
-  console.log(this.newReview.title);
-  console.log(this.newReview.body);
   if (this.newReview.title && this.newReview.body) {
     this._reviewsService
       .submitNewReview(this.newReview)

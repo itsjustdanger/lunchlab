@@ -1,8 +1,9 @@
 var restaurants = require('./restaurants/restaurants.js');
 var reviews = require('./reviews/reviews.js');
+var comments = require('./comments/comments.js');
 
 angular
-  .module('lunchlab', ['restaurants', ,'reviews'])
+  .module('lunchlab', ['restaurants', ,'reviews', 'comments'])
   .config([ '$interpolateProvider',
             '$httpProvider',
             '$qProvider',
