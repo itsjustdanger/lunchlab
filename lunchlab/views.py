@@ -14,5 +14,6 @@ def restaurant_detail(request, id):
         restaurant.visited = False
 
     reviews = Review.objects.filter(restaurant_id=id)
+    restaurant.user_reviewed = not not Review.objects.filter(user_id=user.id, restaurant_id=id)
 
     return render(request, 'restaurants/show.html', {'restaurant': restaurant, 'reviews': reviews})

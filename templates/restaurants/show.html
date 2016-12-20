@@ -7,6 +7,20 @@
     <h3>{{ restaurant.name }} Reviews</h3>
     {% if not restaurant.user_reviewed and restaurant.visited %}
       <p>Why don't you review your visit to {{ restaurant.name }}?</p>
+
+      <div>
+        <input  type="text"
+                name="review-title"
+                ng-model="ctrl.newReview.title"
+                value=""
+                placeholder="Title">
+        <input  type="textarea"
+                name="review-body"
+                ng-model="ctrl.newReview.body"
+                value=""
+                placeholder="This place was great...">
+        <a ng-click="ctrl.submitNewReview()">Submit Review!</a>
+      </div>
     {% endif %}
 
     <ul>

@@ -2,6 +2,7 @@ import json
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest, HttpResponseForbidden
 from reviews.models import Review
+from restaurants.models import Restaurant
 
 
 def index(request):
@@ -39,8 +40,9 @@ def new(request):
         return HttpResponseForbidden
 
     user = request.user
-    data = json.loads(request.BODY)
-    restaurant = data['restaurantId']
+
+    data = json.loads(request.body.decode('utf-8'))
+    restaurant = get_object_or_404(Restaurant, id=data['restaurantId'])
     review = Review(title=data['title'], body=data['body'], user=user,
                         restaurant=restaurant)
 

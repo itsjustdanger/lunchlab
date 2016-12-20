@@ -1,10 +1,10 @@
 import json
+import logging
 
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
 from django.urls import reverse
 from restaurants.models import Restaurant, Visit
-
 
 def index(request):
     user = request.user if request.user.is_authenticated() else None
@@ -26,16 +26,20 @@ def show(request, id):
     try:
         r = user.visited_restaurants.get(id=id)
         r.visited = True
-        r.user_reviewed = not not Review.objects.filter(user_id=user.id, restuarant_id=id)
+        r.user_reviewed = Review.objects.filter(user_id=user.id, restuarant_id=id) != None
+
+
     except:
         r = get_object_or_404(Restaurant, pk=id)
         r.visited = False
-        r.user_reviewd = False
+        r.user_reviewed = False
     restaurant = {
         'id': r.id,
         'name': r.name,
         'visited': r.visited
     }
+
+    print ('~~~~>', r.user_reviewed)
 
     return JsonResponse(restaurant, safe=False)
 
