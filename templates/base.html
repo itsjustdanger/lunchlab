@@ -9,5 +9,13 @@
 
     {% block main %}
     {% endblock %}
+
+    {% block scripts %}
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js">
+
+      </script>
+    {% load staticfiles %}
+      <script src="{% static 'js/build.js' %}"></script>
+    {% endblock %}
   </body>
 </html>

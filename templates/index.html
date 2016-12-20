@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
 {% block main %}
-
+  <ul class="restaurants" ng-controller='restaurantsController as ctrl'>
+    <li ng-repeat='restaurant in ctrl.restaurants'>
+      <restaurant data="restaurant"></restaurant>
+    </li>
+  </ul>
 {% endblock %}
