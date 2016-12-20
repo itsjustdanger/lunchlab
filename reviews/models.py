@@ -6,5 +6,5 @@ from restaurants.models import Restaurant
 class Review(models.Model):
     title = models.CharField(max_length=200)
     body = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='reviews')
