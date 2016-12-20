@@ -14,4 +14,12 @@ RestaurantsController.prototype.getRestaurants = function() {
     }.bind(this));
 };
 
+RestaurantsController.prototype.visit = function(index) {
+  console.log('test');
+  this._restaurantsService.visitRestaurant(this.restaurants[index].id)
+    .then(function success() {
+      this.restaurants[index].visited = true;
+    });
+};
+
 module.exports = RestaurantsController;

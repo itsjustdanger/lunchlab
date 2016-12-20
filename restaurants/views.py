@@ -71,6 +71,6 @@ def visit(request, id):
 
         try:
             visit.save()
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponse('OK')
         except:
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseBadRequest()
