@@ -15,10 +15,11 @@ RestaurantsController.prototype.getRestaurants = function() {
 };
 
 RestaurantsController.prototype.visit = function(index) {
-  console.log('test');
   this._restaurantsService.visitRestaurant(this.restaurants[index].id)
-    .then(function success() {
+    .then(function success(response) {
       this.restaurants[index].visited = true;
+    }, function error(response) {
+      console.log('Error on visit post');
     });
 };
 

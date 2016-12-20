@@ -6,7 +6,7 @@
   </head>
   <body>
     {% include 'header/_header.html' %}
-
+    {% csrf_token %}
     {% block main %}
     {% endblock %}
 
