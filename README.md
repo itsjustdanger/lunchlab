@@ -27,7 +27,7 @@ Development of *LunchLab* is going to be split into self-contained phases.
   - ~~Users can see all of their visited restaurants~~
 
 #### Reviews
-  - Users can review 'visited' restaurants
+  - ~~Users can review 'visited' restaurants~~
   - Users can comment on other users' reviews
 
 

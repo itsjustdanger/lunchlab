@@ -6,3 +6,4 @@ class Comment(models.Model):
     body = models.TextField()
     review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=200, default='')
