@@ -42,6 +42,6 @@ Development of *LunchLab* is going to be split into self-contained phases.
 ## Phase 4
 #### User Feed
   - ~~Users' home pages are feeds of restaurants options (visited/unvisted)~~
-  - Users can 'thumbs-down' a restaurant option to permanently remove it from the feed
+  - ~~Users can 'thumbs-down' a restaurant option to permanently remove it from the feed~~
 #### User Profile
   - Users have profile pages with profile pictures and editable details
