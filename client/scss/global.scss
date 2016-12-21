@@ -1,6 +1,7 @@
 html, body, div, section, header, p, ul, li, a, button, span, h1, h2, h3, h4, h5, h6 {
   background: inherit;
   color: inherit;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: inherit;
   display: block;
   margin: 0;
@@ -15,4 +16,17 @@ html, body {
 
 ul, li {
   list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+  font-size: 2.25em;
 }

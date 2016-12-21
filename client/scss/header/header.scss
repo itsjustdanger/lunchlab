@@ -1,12 +1,32 @@
 header {
   align-items: center;
   background: #5bc0de;
+  border-bottom: 5px solid #ffd56a;
   color: #fff;
   display: flex;
-  height: 60px;
+  height: 65px;
   justify-content: space-between;
   padding: 0 10px;
+
 }
+
+.header_lockup {
+  .header_lockup_link {
+    align-items: center;
+    display: flex;
+
+    .header_lockup_logo {
+      height: 50px;
+    }
+
+    .header_lockup_title {
+      margin: 0 10px;
+    }
+  }
+
+
+}
+
 
 .header_user-management {
   display: flex;
