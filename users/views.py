@@ -33,12 +33,12 @@ def create(request):
     first_name = request.POST['first-name']
     last_name = request.POST['last-name']
     email = request.POST['email']
+    can_create_restaurants = 'is-admin' in request.POST
 
-    user = User.objects.create_user(username=username,
-                                    password=password,
-                                    first_name=first_name,
-                                    last_name=last_name,
-                                    email=email)
+    user = User.objects.create_user(username=username, password=password,
+            first_name=first_name, last_name=last_name, email=email)
+    user.lunchprofile.can_create_restaurants = can_create_restaurants
+    user.save()
 
     if user is not None:
         login(request, user)

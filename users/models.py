@@ -8,6 +8,7 @@ from restaurants.models import Restaurant
 # Create your models here.
 class LunchProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    can_create_restaurants = models.BooleanField(default=False)
     visits = models.ManyToManyField(Restaurant, related_name='visitors')
     thumbsdowns = models.ManyToManyField(Restaurant, related_name='thumbsdown_users')
 
