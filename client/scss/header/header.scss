@@ -1,7 +1,7 @@
 header {
   align-items: center;
-  background: #5bc0de;
-  border-bottom: 5px solid #ffd56a;
+  background: $light-blue;
+  border-bottom: 5px solid $gold;
   color: #fff;
   display: flex;
   height: 65px;
@@ -17,6 +17,7 @@ header {
 
     .header_lockup_logo {
       height: 50px;
+      width: auto;
     }
 
     .header_lockup_title {

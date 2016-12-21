@@ -79,3 +79,5 @@ def visit(request, id):
             return HttpResponse('OK')
         except:
             return HttpResponseBadRequest()
+
+    return HttpResponseBadRequest()

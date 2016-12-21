@@ -1,6 +1,7 @@
 var RestaurantsController = function(restaurantsService) {
   this._restaurantsService = restaurantsService;
-  this.restaurants = [];
+  this.visited = [];
+  this.unvisited = [];
 
   this.getRestaurants();
 };
@@ -9,8 +10,15 @@ RestaurantsController.prototype.getRestaurants = function() {
 
   this._restaurantsService.getRestaurants()
     .then(function success(response) {
-
-      this.restaurants = response.data;
+      var restaurants = response.data;
+      console.log(restaurants);
+      restaurants.forEach((restaurant) => {
+        if (restaurant.visited) {
+          this.visited.push(restaurant);
+        } else {
+          this.unvisited.push(restaurant);
+        }
+      });
     }.bind(this));
 };
 

@@ -1,11 +1,42 @@
 {% extends "base.html" %}
 
 {% block main %}
-  <ul class="restaurants" ng-controller='restaurantsController as ctrl'>
-    <li ng-repeat='restaurant in ctrl.restaurants'>
-      <restaurant data="restaurant"></restaurant>
-      <a ng-if="!restaurant.visited" ng-click="ctrl.visit($index)">Been Here?</a>
-      <span ng-if="restaurant.visited">You've been here before!</span>
-    </li>
-  </ul>
+
+  <section  class="restaurants_section"
+            ng-controller='restaurantsController as ctrl'>
+    <h2>Let's get some lunch...</h2>
+
+    <div class="unvisited_section">
+      <h3>Why not try something new?</h3>
+
+      <ul class="unvisited_restaurants_list" >
+        <li class="univisited_restaurant restaurant"
+            ng-repeat='restaurant in ctrl.unvisited'>
+          <restaurant data="restaurant"></restaurant>
+
+          <div class="restaurant_actions">
+            {% if request.user.is_authenticated %}
+            <a ng-if="!restaurant.visited" ng-click="ctrl.visit($index)">Been Here?</a>
+            <span ng-if="restaurant.visited">You've been here before!</span>
+            {% else %}
+            <span>Sign in or sign up to track restaurants you've visted!</span>
+            {% endif %}
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    {% if request.user.is_authenticated %}
+    <div class="visited_section">
+      <h3>Or how about an old favorite?</h3>
+
+      <ul class="visited_restaurants_list">
+        <li class="univisited_restaurant restaurant"
+            ng-repeat='restaurant in ctrl.visited'>
+          <restaurant data="restaurant"></restaurant>
+        </li>
+      </ul>
+    </div>
+    {% endif %}
+  </section>
 {% endblock %}
