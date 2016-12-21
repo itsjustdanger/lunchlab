@@ -1,34 +1,37 @@
 {% extends "base.html" %}
 
 {% block main %}
-  <input type="hidden" id="restaurant-id" value="{{restaurant.id}}">
-  <h2>{{ restaurant.name }}</h2>
-  <div ng-controller="reviewsController as ctrl">
-    <h3>{{ restaurant.name }} Reviews</h3>
-    {% if not restaurant.user_reviewed and restaurant.visited %}
+  <section class="restaurant_show_section">
+    <input type="hidden" id="restaurant-id" value="{{restaurant.id}}">
+    <h2>{{ restaurant.name }}</h2>
+    <div ng-controller="reviewsController as ctrl">
+      <h3>{{ restaurant.name }} Reviews</h3>
+      {% if not restaurant.user_reviewed and restaurant.visited %}
       <p>Why don't you review your visit to {{ restaurant.name }}?</p>
 
       <div>
         <input  type="text"
-                name="review-title"
-                ng-model="ctrl.newReview.title"
-                value=""
-                placeholder="Title">
+        name="review-title"
+        ng-model="ctrl.newReview.title"
+        value=""
+        placeholder="Title">
         <input  type="textarea"
-                name="review-body"
-                ng-model="ctrl.newReview.body"
-                value=""
-                placeholder="This place was great...">
+        name="review-body"
+        ng-model="ctrl.newReview.body"
+        value=""
+        placeholder="This place was great...">
         <a ng-click="ctrl.submitNewReview()">Submit Review!</a>
       </div>
-    {% endif %}
+      {% endif %}
 
-    <ul>
-      <li ng-repeat="review in ctrl.reviews">
-        <review data="review"></review>
-      </li>
-    </ul>
-  </div>
+      <ul>
+        <li ng-repeat="review in ctrl.reviews">
+          <review data="review"></review>
+        </li>
+      </ul>
+    </div>
 
-  <a href="{% url 'index' %}">Back to Restaurants</a>
+    <a href="{% url 'index' %}">Back to Restaurants</a>
+
+  </section>
 {% endblock %}
