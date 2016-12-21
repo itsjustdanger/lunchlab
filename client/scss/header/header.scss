@@ -1,0 +1,17 @@
+header {
+  align-items: center;
+  background: #5bc0de;
+  color: #fff;
+  display: flex;
+  height: 60px;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.header_user-management {
+  display: flex;
+
+  .user-management_link {
+    padding: 0 10px;
+  }
+}
