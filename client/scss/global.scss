@@ -1,9 +1,9 @@
 html, body, div, section, header, p, ul, li, a, button, input, textarea, span, h1, h2, h3, h4, h5, h6 {
-  background: inherit;
+  // background: inherit;
   color: inherit;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: inherit;
-  display: block;
+  // display: block;
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -12,6 +12,7 @@ html, body, div, section, header, p, ul, li, a, button, input, textarea, span, h
 html, body {
   background: #fff;
   color: #535353;
+  height: 100%;
 }
 
 ul, li {
@@ -40,7 +41,7 @@ a {
   transition: color, 0.2s;
 
   &:hover {
-    color: $light-gray;
+    color: $gold;
   }
 }
 

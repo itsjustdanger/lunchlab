@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block main %}
+<section>
+  <a href="{% url 'new-restaurant' %}">Add New Restaurant</a>
+  
+  <ul>
+    {% for restaurant in restaurants %}
+    <li>
+      <a href="{% url 'edit-restaurant' restaurant.id %}">
+        <h4>{{restaurant.name}}</h4>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

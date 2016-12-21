@@ -1,9 +1,15 @@
 var restaurants = require('./restaurants/restaurants.js');
 var reviews = require('./reviews/reviews.js');
 var comments = require('./comments/comments.js');
+var adminRestaurants = require('./admin-restaurants/admin-restaurants.js');
+
 
 angular
-  .module('lunchlab', ['restaurants', ,'reviews', 'comments'])
+  .module('lunchlab', [ 'restaurants',
+                        'reviews',
+                        'comments',
+                        'adminRestaurants'
+                      ])
   .config([ '$interpolateProvider',
             '$httpProvider',
             '$qProvider',

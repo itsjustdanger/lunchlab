@@ -8,7 +8,7 @@
   </div>
   <div class="header_navigation">
     {% if user.is_authenticated and user.lunchprofile.can_create_restaurants %}
-      <a class="header_copy" href="">Manage Restaurants</a>
+      <a class="header_copy" href="{% url 'admin-index' %}">Manage Restaurants</a>
     {% endif %}
   </div>
   <div class="header_user-management">

@@ -2,7 +2,7 @@ import json
 import logging
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.urls import reverse
 from restaurants.models import Restaurant
 
@@ -46,6 +46,10 @@ def show(request, id):
     return JsonResponse(restaurant, safe=False)
 
 def new(request):
+    user = request.user if request.user.is_authenticated() else None
+    if not user.lunchprofile.can_create_restaurants:
+        return HttpResponseForbidden
+
     data = json.loads(request.BODY)
     restaurant = Restaurant(name=data['name'])
 
