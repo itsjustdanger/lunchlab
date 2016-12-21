@@ -1,8 +1,10 @@
-var AdminRestaurantsController = function(adminRestaurantsService) {
+var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $scope) {
   this._adminRestaurantsService = adminRestaurantsService;
+  this._$scope = $scope;
   this.map = undefined;
   this.searchBox = undefined;
   this.markers = [];
+  this.searchResults = [];
   this.mapEl = document.getElementById('map');
   this.input = document.getElementById('address-input');
 
@@ -11,13 +13,10 @@ var AdminRestaurantsController = function(adminRestaurantsService) {
 
 AdminRestaurantsController.prototype.initMap = function() {
   this.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
+    zoom: 13,
     center: new google.maps.LatLng(40.73, -73.99),
     mapTypeId: 'terrain'
   });
-
-  // console.log(this.map);
-  // console.log(this.mapEl);
 
   this.searchBox = new google.maps.places.SearchBox(this.input);
   this.searchBox.bindTo('bounds', this.map);
@@ -33,17 +32,27 @@ AdminRestaurantsController.prototype.initMap = function() {
 
     this.generateMarkers(results, bounds);
     this.map.fitBounds(bounds);
+    this._$scope.$apply();
   }.bind(this));
 };
 
 AdminRestaurantsController.prototype.generateMarkers = function(results, bounds) {
   this.clearMarkers();
+  this.clearResults();
 
   for (var i = 0; i < results.length; i++) {
     this.markers[i] = new google.maps.Marker({
       position: results[i].geometry.location,
       animation: google.maps.Animation.DROP,
     });
+
+    this.searchResults[i] = {
+      name: results[i].name,
+      // photo: results[i].photos[0].getUrl(),
+      address: results[i].formatted_address,
+      lat: results[i].geometry.location.lat(),
+      lng: results[i].geometry.location.lng()
+    };
 
     setTimeout(this.dropMarker(i), i * 100);
 
@@ -55,12 +64,15 @@ AdminRestaurantsController.prototype.generateMarkers = function(results, bounds)
       bounds.extend(results[i].geometry.location);
     }
   }
+
+  console.log(this);
+  console.log(this.searchResults);
 };
 
 AdminRestaurantsController.prototype.dropMarker = function(i) {
   return function() {
     this.markers[i].setMap(this.map);
-  }.bind(this)
+  }.bind(this);
 };
 
 AdminRestaurantsController.prototype.clearMarkers = function() {
@@ -69,6 +81,10 @@ AdminRestaurantsController.prototype.clearMarkers = function() {
   }.bind(this));
 
   this.markers = [];
+};
+
+AdminRestaurantsController.prototype.clearResults = function() {
+  this.searchResults = [];
 };
 
 module.exports = AdminRestaurantsController;
