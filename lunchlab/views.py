@@ -7,7 +7,7 @@ def restaurant_detail(request, id):
     user = request.user if request.user.is_authenticated() else None
 
     try:
-        restaurant = user.visited_restaurants.get(id=id)
+        restaurant = user.lunchprofile.visits.get(id=id)
         restaurant.visited = True
         restaurant.user_reviewed = not not Review.objects.filter(user_id=user.id, restaurant_id=id)
     except:

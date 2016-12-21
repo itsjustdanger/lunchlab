@@ -4,12 +4,12 @@ import logging
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
 from django.urls import reverse
-from restaurants.models import Restaurant, Visit, ThumbsDown
+from restaurants.models import Restaurant
 
 def index(request):
     user = request.user if request.user.is_authenticated() else None
-    visited = set(user.visited_restaurants.all()) if user else set()
-    thumbs_down = set([t.restaurant_id for t in user.thumbsdown_set.all()]) if user else set()
+    visited = set(user.lunchprofile.visits.all()) if user else set()
+    thumbs_down = set([r.id for r in user.lunchprofile.thumbsdowns.all()]) if user else set()
     restaurants = []
 
     for r in Restaurant.objects.all():
@@ -26,7 +26,7 @@ def show(request, id):
     user = request.user if request.user.is_authenticated() else None
 
     try:
-        r = user.visited_restaurants.get(id=id)
+        r = user.lunchprofile.visits.get(id=id)
         r.visited = True
         r.user_reviewed = Review.objects.filter(user_id=user.id, restuarant_id=id) != None
 
@@ -74,10 +74,10 @@ def visit(request, id):
     restaurant = get_object_or_404(Restaurant, pk=id)
 
     if user:
-        visit = Visit(user=user, restaurant=restaurant)
+        user.lunchprofile.visits.add(restaurant)
 
         try:
-            visit.save()
+            user.save()
             return HttpResponse('OK')
         except:
             return HttpResponseBadRequest()
@@ -89,10 +89,10 @@ def thumbs_down(request, id):
     restaurant = get_object_or_404(Restaurant, id=id)
 
     if user:
-        thumbs_down = ThumbsDown(user=user, restaurant=restaurant)
+        user.lunchprofile.thumbsdowns.add(restaurant)
 
         try:
-            thumbs_down.save()
+            user.save()
             return HttpResponse('OK')
         except:
             return HttpResponseBadRequest()
