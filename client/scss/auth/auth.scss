@@ -1,0 +1,41 @@
+.auth_section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px;
+  text-align: center;
+}
+
+.auth_section_header {
+  margin-bottom: 25px;
+}
+
+.auth_form_inputs_row {
+  display: flex;
+  margin: 15px 0;
+
+  input {
+    margin: 0 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .auth_admin_box_label {
+    align-items: center;
+    display: flex;
+    margin: 0 10px;
+
+    input {
+      margin-left: 15px;
+    }
+  }
+}
+
+.auth_submit_button {
+  &:hover {
+    cursor: pointer;
+  }
+}

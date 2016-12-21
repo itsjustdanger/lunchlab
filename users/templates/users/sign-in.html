@@ -1,14 +1,19 @@
 {% extends "base.html" %}
 
 {% block main %}
-<h1>Sign In</h1>
+<section class="auth_section">
+  <h2 class="auth_section_header">Sign In</h2>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'auth' %}" method="post">
-  {% csrf_token %}
-  <input type="text" name="username" value="" placeholder="Username">
-  <input type="password" name="password" value="" placeholder="Password">
-  <input type="submit" value="Sign In">
-</form>
+  <form action="{% url 'auth' %}" method="post">
+    {% csrf_token %}
+    <div class="auth_form_inputs_row">
+      <input type="text" name="username" value="" placeholder="Username">
+      <input type="password" name="password" value="" placeholder="Password">
+    </div>
+    <input class="auth_submit_button" type="submit" value="Sign In">
+  </form>
+
+</section>
 {% endblock %}
