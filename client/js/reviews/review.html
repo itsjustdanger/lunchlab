@@ -3,10 +3,25 @@
 <p>{[review.body]}</p>
 
 <div ng-controller="commentsController as ctrl">
+
   <a ng-click="ctrl.getComments(review.id)">Load Comments</a>
-  <ul ng-if="ctrl.showComments">
-    <li ng-repeat="comment in ctrl.comments">
-      <comment data="comment"></comment>
-    </li>
-  </ul>
+  <section ng-if="ctrl.showComments">
+    <div>
+      <h3>Comment on this review</h3>
+      <input  type="text"
+      name="comment-body"
+      ng-model="ctrl.newComment.body"
+      value="">
+      <a ng-click="ctrl.submitNewComment(review.id)">Submit Comment</a>
+    </div>
+
+    <div>
+      <h3>Comments</h3>
+      <ul ng-if="ctrl.comments.length > 0">
+        <li ng-repeat="comment in ctrl.comments">
+          <comment data="comment"></comment>
+        </li>
+      </ul>
+    </div>
+  </section>
 </div>

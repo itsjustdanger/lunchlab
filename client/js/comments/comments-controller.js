@@ -18,7 +18,7 @@ CommentsController.prototype.getComments = function(reviewId) {
 
 CommentsController.prototype.submitNewComment = function(reviewId) {
   if (this.newComment.body) {
-    newComment.reviewId = reviewId;
+    this.newComment.reviewId = reviewId;
     this._commentsService
       .submitNewComment(this.newComment)
       .then(function success(response) {

@@ -36,7 +36,10 @@ def new(request):
     except:
         return HttpResponseBadRequest()
 
-    return HttpResponse('OK')
+    return JsonResponse({   'userName': comment.user_name,
+                            'userId': comment.user_id,
+                            'reviewId': comment.review_id,
+                            'body': comment.body }, safe=False)
 
 def delete(request, id):
     comment = get_object_or_404(Comment, id=id)
