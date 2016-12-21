@@ -7,11 +7,13 @@
     </a>
   </div>
   <div class="header_navigation">
-
+    {% if user.is_authenticated and user.lunchprofile.can_create_restaurants %}
+      <a class="header_copy" href="">Manage Restaurants</a>
+    {% endif %}
   </div>
   <div class="header_user-management">
     {% if user.is_authenticated %}
-      <p>Hey, {{user.first_name}}!</p>
+      <p class="header_copy">Hey, {{user.first_name}}!</p>
       <a class="user-management_link" href="{% url 'sign-out' %}">Sign Out</a>
     {% else %}
       <a class="user-management_link" href="{% url 'sign-in' %}">Sign In</a>

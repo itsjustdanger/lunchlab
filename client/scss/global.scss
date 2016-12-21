@@ -36,6 +36,14 @@ input {
   padding: 5px 10px;
 }
 
+a {
+  transition: color, 0.2s;
+
+  &:hover {
+    color: $light-gray;
+  }
+}
+
 h1,
 h2,
 h3,

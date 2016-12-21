@@ -34,7 +34,7 @@
   </div>
 
   {% if request.user.is_authenticated %}
-  <div class="visited_section">
+  <div ng-if="ctrl.visited.length" class="visited_section">
     <h3 ng-if="ctrl.unvisited.length">Or how about an old favorite?</h3>
     <h3 ng-if="!ctrl.unvisited.length">How about an old favorite?</h3>
 

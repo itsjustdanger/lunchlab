@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'restaurants.apps.RestaurantsConfig',
     'reviews.apps.ReviewsConfig',
     'comments.apps.CommentsConfig',
-    'django.contrib.admin',
+    'admin.apps.AdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
