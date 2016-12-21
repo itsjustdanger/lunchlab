@@ -10,4 +10,9 @@ RestaurantsService.prototype.visitRestaurant = function(id) {
   return this._$http.post('api/restaurants/visit/' + id + '/');
 };
 
+RestaurantsService.prototype.thumbsDownRestaurant = function(id) {
+  return this._$http
+    .post('api/restaurants/thumbs-down/' + id + '/');
+};
+
 module.exports = RestaurantsService;

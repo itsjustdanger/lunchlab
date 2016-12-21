@@ -1,0 +1,32 @@
+.home_hero_image_wrapper {
+  border-bottom: 5px solid $gold;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+
+  .home_hero_down_arrow {
+    background: rgba(0, 0, 0, 0);
+    bottom: 0;
+    color: white;
+    font-size: 5em;
+    line-height: 60px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.15);
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .home_hero_copy {
+    background: rgba(0, 0, 0, 0);
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.15);
+    top: 45%;
+    width: 100%;
+  }
+}

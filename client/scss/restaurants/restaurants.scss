@@ -6,57 +6,81 @@
 .unvisited_section,
 .visited_section {
   text-align: left;
-  margin: 20px 0;
+  margin: 35px 0 20px;
 
   .unvisited_restaurants_list,
   .visited_restaurants_list {
     display: flex;
     flex-wrap: wrap;
-    margin: 35px 0 20px;
+    margin: 20px 0;
+  }
+}
 
-    .restaurant {
-      background: #fff;
-      border: 1px solid $light-gray;
-      border-radius: 2px;
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15);
-      margin: 15px;
-      transition: box-shadow, 0.6s, transform, 0.6s;
-      width: 250px;
+.restaurant {
+  background: #fff;
+  border: 1px solid $light-gray;
+  border-radius: 2px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15);
+  margin: 15px;
+  position: relative;
+  transition: box-shadow, 0.6s, transform, 0.6s;
+  width: 250px;
+  height: 260px;
 
-      &:hover {
-        box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.15);
-        transform: translateY(-1px);
-      }
+  &:hover {
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
 
-      .restaurant_actions {
-        padding: 10px;
-      }
+  .restaurant_image_wrapper {
+    border-bottom: 1px solid $light-gray;
+    margin-bottom: 10px;
+    position: relative;
+    text-align: center;
 
-      .restaurant_image_wrapper {
-        border-bottom: 1px solid $light-gray;
-        margin-bottom: 10px;
-        position: relative;
-        text-align: center;
+    .restaurant_image_default {
+      width: 50%;
+    }
 
-        .restaurant_image_default {
-          width: 50%;
-        }
+    &:after {
+      content: "";
+      height:2px;
+      background: $light-gray;
+      position: relative;
+      bottom: 0;
+      width: 120%;
+    }
+  }
 
-        &:after {
-          content: "";
-          height:2px;
-          background: $light-gray;
-          position: relative;
-          bottom: 0;
-          width: 120%;
-        }
-      }
+  .restaurant_name {
+    color: $dark-blue;
+    margin-bottom: 15px;
+    padding: 0 10px;
+  }
+}
 
-      .restaurant_name {
-        color: $dark-blue;
-        margin-bottom: 15px;
-        padding: 0 10px;
-      }
+.restaurant_actions {
+  bottom: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+
+  .add_visit_action,
+  .thumbs_down_action {
+    align-items: center;
+    display: flex;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .add_visit_icon,
+    .thumbs_down_icon {
+      height: auto;
+      width: 25px;
     }
   }
 }

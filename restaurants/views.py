@@ -4,19 +4,21 @@ import logging
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseBadRequest
 from django.urls import reverse
-from restaurants.models import Restaurant, Visit
+from restaurants.models import Restaurant, Visit, ThumbsDown
 
 def index(request):
     user = request.user if request.user.is_authenticated() else None
     visited = set(user.visited_restaurants.all()) if user else set()
+    thumbs_down = set([t.restaurant_id for t in user.thumbsdown_set.all()]) if user else set()
     restaurants = []
 
     for r in Restaurant.objects.all():
-        restaurants.append({
-            'id': r.id,
-            'name': r.name,
-            'visited': r in visited
-        })
+        if r.id not in thumbs_down:
+            restaurants.append({
+                'id': r.id,
+                'name': r.name,
+                'visited': r in visited
+            })
 
     return JsonResponse(restaurants, safe=False)
 
@@ -76,6 +78,21 @@ def visit(request, id):
 
         try:
             visit.save()
+            return HttpResponse('OK')
+        except:
+            return HttpResponseBadRequest()
+
+    return HttpResponseBadRequest()
+
+def thumbs_down(request, id):
+    user = request.user if request.user.is_authenticated() else None
+    restaurant = get_object_or_404(Restaurant, id=id)
+
+    if user:
+        thumbs_down = ThumbsDown(user=user, restaurant=restaurant)
+
+        try:
+            thumbs_down.save()
             return HttpResponse('OK')
         except:
             return HttpResponseBadRequest()

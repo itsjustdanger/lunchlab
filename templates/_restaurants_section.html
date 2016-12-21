@@ -1,0 +1,52 @@
+<section  class="restaurants_section"
+          ng-controller='restaurantsController as ctrl'>
+  <div class="unvisited_section">
+    <h3>Why not try something new?</h3>
+
+    <ul class="unvisited_restaurants_list" >
+      <li class="univisited_restaurant restaurant"
+          ng-repeat='restaurant in ctrl.unvisited'>
+        <restaurant data="restaurant"></restaurant>
+
+        <div class="restaurant_actions">
+          {% if request.user.is_authenticated %}
+          <a  class="add_visit_action"
+              ng-click="ctrl.visit($index)">
+            {% load staticfiles %}
+            <img  class="add_visit_icon"
+                  src="{% static 'assets/plus-sign.svg' %}"
+                  alt="Visit {[restaurant.name]}">
+            <!-- <span>Been here</span> -->
+          </a>
+          <a  class="thumbs_down_action"
+              ng-click="ctrl.thumbsDown('unvisited', $index)">
+            <!-- <span>No way!</span> -->
+            <img  class="thumbs_down_icon"
+                  src="{% static 'assets/thumbs-down.svg' %}"
+                  alt="Thumbs-down {[restaurant.name]}">
+          </a>
+          {% else %}
+          <span>Sign in or sign up to track restaurants you've visted!</span>
+          {% endif %}
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  {% if request.user.is_authenticated %}
+  <div class="visited_section">
+    <h3>Or how about an old favorite?</h3>
+
+    <ul class="visited_restaurants_list">
+      <li class="univisited_restaurant restaurant"
+          ng-repeat='restaurant in ctrl.visited'>
+        <restaurant data="restaurant"></restaurant>
+
+        <div class="restaurant_actions">
+
+        </div>
+      </li>
+    </ul>
+  </div>
+  {% endif %}
+</section>
