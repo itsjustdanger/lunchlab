@@ -37,30 +37,30 @@
         </mask>
     </defs>
     <g id="Oval-Copy-3" stroke="none" fill="none">
-        <use fill="#5bc0de" fill-rule="evenodd" xlink:href="#path-1"></use>
+        <use fill="#F63440" fill-rule="evenodd" xlink:href="#path-1"></use>
         <use stroke="#979797" mask="url(#mask-2)" stroke-width="10" xlink:href="#path-1"></use>
     </g>
     <g id="Path" stroke="none" fill="none">
         <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
         <use stroke="#979797" mask="url(#mask-4)" stroke-width="10" xlink:href="#path-3"></use>
     </g>
-    <path d="M27.9307009,157 C21.3054665,157 18.5167565,152.293536 21.70414,146.483812 L42.4862697,108.603709 C42.4862697,108.603709 48.4507907,116.359867 65.905155,114.945904 C83.3595193,113.531942 88.3216347,106.135003 96.7862708,105.123009 C105.250907,104.111015 117.339318,109.675788 117.339318,109.675788 L137.148495,146.438426 C140.291546,152.271422 137.467607,157 130.843444,157 L27.9307009,157 Z" id="Path" stroke="none" fill="#5bc0de" fill-rule="evenodd"></path>
+    <path d="M27.9307009,157 C21.3054665,157 18.5167565,152.293536 21.70414,146.483812 L42.4862697,108.603709 C42.4862697,108.603709 48.4507907,116.359867 65.905155,114.945904 C83.3595193,113.531942 88.3216347,106.135003 96.7862708,105.123009 C105.250907,104.111015 117.339318,109.675788 117.339318,109.675788 L137.148495,146.438426 C140.291546,152.271422 137.467607,157 130.843444,157 L27.9307009,157 Z" id="Path" stroke="none" fill="#F63440" fill-rule="evenodd"></path>
     <use id="Path" stroke="#979797" mask="url(#mask-6)" stroke-width="10" fill="none" xlink:href="#path-5"></use>
     <path d="M43.7948469,109.615818 C43.7948469,109.615818 52.240927,115.743759 66.6681116,114.790709 C81.0952962,113.837658 86.4275416,105 95.8622244,105 C105.296907,105 115.5,109.615818 115.5,109.615818" id="Line" stroke="#979797" stroke-width="5" stroke-linecap="square" fill="none"></path>
     <g id="Oval" stroke="none" fill="none">
-        <use fill="#5bc0de" fill-rule="evenodd" xlink:href="#path-7"></use>
+        <use fill="#F63440" fill-rule="evenodd" xlink:href="#path-7"></use>
         <use stroke="#979797" mask="url(#mask-8)" stroke-width="10" xlink:href="#path-7"></use>
     </g>
     <g id="Oval-Copy" stroke="none" fill="none">
-        <use fill="#5bc0de" fill-rule="evenodd" xlink:href="#path-9"></use>
+        <use fill="#F63440" fill-rule="evenodd" xlink:href="#path-9"></use>
         <use stroke="#979797" mask="url(#mask-10)" stroke-width="10" xlink:href="#path-9"></use>
     </g>
     <g id="Oval-Copy-3" stroke="none" fill="none">
-        <use fill="#5bc0de" fill-rule="evenodd" xlink:href="#path-11"></use>
+        <use fill="#F63440" fill-rule="evenodd" xlink:href="#path-11"></use>
         <use stroke="#979797" mask="url(#mask-12)" stroke-width="10" xlink:href="#path-11"></use>
     </g>
     <g id="Oval-Copy" stroke="none" fill="none">
-        <use fill="#5bc0de" fill-rule="evenodd" xlink:href="#path-13"></use>
+        <use fill="#F63440" fill-rule="evenodd" xlink:href="#path-13"></use>
         <use stroke="#979797" mask="url(#mask-14)" stroke-width="10" xlink:href="#path-13"></use>
     </g>
 </svg>

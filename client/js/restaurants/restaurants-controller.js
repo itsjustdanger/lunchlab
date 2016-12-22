@@ -12,14 +12,16 @@ RestaurantsController.prototype.getRestaurants = function() {
     .getRestaurants()
     .then(function success(response) {
       var restaurants = response.data;
-      console.log(restaurants);
-      restaurants.forEach((restaurant) => {
+
+      restaurants.forEach(function (restaurant) {
+        console.log(restaurant);
+
         if (restaurant.visited) {
           this.visited.push(restaurant);
         } else {
           this.unvisited.push(restaurant);
         }
-      });
+      }.bind(this));
     }.bind(this));
 };
 

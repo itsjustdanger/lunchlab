@@ -16,6 +16,7 @@ def index(request):
         if r.id not in thumbs_down:
             restaurants.append({
                 'id': r.id,
+                'address': r.address,
                 'name': r.name,
                 'visited': r in visited
             })
@@ -37,6 +38,7 @@ def show(request, id):
         r.user_reviewed = False
     restaurant = {
         'id': r.id,
+        'address': r.address,
         'name': r.name,
         'visited': r.visited
     }

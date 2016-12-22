@@ -1,26 +1,23 @@
 <section  class="restaurants_section"
           ng-controller='restaurantsController as ctrl'>
   <div ng-if="ctrl.unvisited.length" class="unvisited_section">
-    <h3>Why not try something new?</h3>
-
+    <h3>Try something new</h3>
+    <p>New restaurant selections customized to your history.</p>
     <ul class="unvisited_restaurants_list" >
       <li class="univisited_restaurant restaurant"
-          ng-repeat='restaurant in ctrl.unvisited'>
+          ng-repeat='restaurant in ctrl.unvisited | limitTo:3'>
         <restaurant data="restaurant"></restaurant>
 
         <div class="restaurant_actions">
           {% if request.user.is_authenticated %}
           <a  class="add_visit_action"
               ng-click="ctrl.visit($index)">
-            {% load staticfiles %}
-            <img  class="add_visit_icon"
-                  src="{% static 'assets/plus-sign.svg' %}"
-                  alt="Visit {[restaurant.name]}">
-            <!-- <span>Been here</span> -->
+            <span class="add_visit_button">Been here before?</span>
           </a>
           <a  class="thumbs_down_action"
               ng-click="ctrl.thumbsDown('unvisited', $index)">
             <!-- <span>No way!</span> -->
+            {% load staticfiles %}
             <img  class="thumbs_down_icon"
                   src="{% static 'assets/thumbs-down.svg' %}"
                   alt="Thumbs-down {[restaurant.name]}">
