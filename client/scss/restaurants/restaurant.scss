@@ -2,3 +2,56 @@
   padding: 25px;
 
 }
+
+.restaurant_reviews_section {
+
+}
+
+.restaurant_reviews_list {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  .restaurant_review_list_item {
+    width: 100%;
+  }
+
+  .restaurant_review {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+}
+
+.restaurant_review {
+  border-bottom: 1px solid $background-gray;
+
+  .review_content {
+    display: flex;
+
+    .review_user_info {
+      margin: 0 15px;
+      width: 200px;
+    }
+
+    .review_copy {
+      margin: 0 15px;
+      width: 400px;
+
+      .review_title {
+
+      }
+
+      .review_body {
+      }
+    }
+  }
+
+  .review_comments_section {
+
+  }
+}
+
+.restaurant_reviews_header {
+  color: #F63440
+}

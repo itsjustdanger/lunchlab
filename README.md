@@ -45,3 +45,9 @@ Development of *LunchLab* is going to be split into self-contained phases.
   - ~~Users can 'thumbs-down' a restaurant option to permanently remove it from the feed~~
 #### User Profile
   - Users have profile pages with profile pictures and editable details
+
+
+
+## To Do
+- Refactor restaurant JSON conversion: right now we're doing it in a few places. Create a to_json method either on the model or somewhere reasonable.
+- Add user information directly to review model.

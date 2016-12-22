@@ -1,13 +1,21 @@
-<h4>{[review.title]}</h4>
-<span ng-if="review.isUserReview">You wrote this</span>
-<p>{[review.body]}</p>
+<div class="review_content">
+  <div class="review_user_info">
+    <span ng-if="review.isUserReview">You wrote this</span>
 
-<div ng-controller="commentsController as ctrl">
+  </div>
 
+  <div class="review_copy">
+    <h4 class="review_title">{[review.title]}</h4>
+    <p class="review_body">{[review.body]}</p>
+  </div>
+</div>
+
+
+<div class="reivew_comments_section" ng-controller="commentsController as ctrl">
   <a ng-click="ctrl.getComments(review.id)">Load Comments</a>
   <section ng-if="ctrl.showComments">
     <div>
-      <h3>Comment on this review</h3>
+      <h4>Comment on this review</h4>
       <input  type="text"
       name="comment-body"
       ng-model="ctrl.newComment.body"
@@ -16,7 +24,7 @@
     </div>
 
     <div>
-      <h3>Comments</h3>
+      <h4>Comments</h4>
       <ul ng-if="ctrl.comments.length > 0">
         <li ng-repeat="comment in ctrl.comments">
           <comment data="comment"></comment>
