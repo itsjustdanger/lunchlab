@@ -33,10 +33,10 @@ Development of *LunchLab* is going to be split into self-contained phases.
 
 ## Phase 3
 #### Admins and New Restaurants
-  - Only Admins can create restaurants
-  - When adding restaurants, restaurant name is auto-completed
-  - When adding restaurants, lat/lng is returned
-  - When adding restaurants, handle incorrect addresses
+  - ~~Only Admins can create restaurants~~
+  - ~~When adding restaurants, restaurant name is auto-completed~~
+  - ~~When adding restaurants, lat/lng is returned~~
+  - ~~When adding restaurants, handle incorrect addresses~~
 
 
 ## Phase 4

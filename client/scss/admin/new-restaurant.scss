@@ -1,6 +1,10 @@
 .new_restaurant_section {
   .form_submit_button {
+    background: $light-gray;
     color: $dark-blue;
+    margin: 15px;
+    padding: 10px 15px;
+    text-align: center;
 
     &:hover {
       cursor: pointer;

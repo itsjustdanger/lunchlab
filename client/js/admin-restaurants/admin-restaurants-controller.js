@@ -65,9 +65,6 @@ AdminRestaurantsController.prototype.generateMarkers = function(results, bounds)
       bounds.extend(results[i].geometry.location);
     }
   }
-
-  console.log(this);
-  console.log(this.searchResults);
 };
 
 AdminRestaurantsController.prototype.dropMarker = function(i) {
@@ -89,13 +86,15 @@ AdminRestaurantsController.prototype.clearResults = function() {
 };
 
 AdminRestaurantsController.prototype.autocompleteForm = function(idx) {
-  // this.newRestaurant.name     = this.searchResults[idx].name;
-  // this.newRestaurant.address  = this.searchResults[idx].address;
-  // this.newRestaurant.lat      = this.searchResults[idx].lat;
-  // this.newRestaurant.lng      = this.searchResults[idx].lng;
-  this.newRestaurant = this.searchResults[idx];
-  console.log(idx);
-  console.log(this.searchResults[idx]);
+  this.newRestaurant.name     = this.searchResults[idx].name;
+  this.newRestaurant.address  = this.searchResults[idx].address;
+  this.newRestaurant.lat      = this.searchResults[idx].lat;
+  this.newRestaurant.lng      = this.searchResults[idx].lng;
+};
+
+AdminRestaurantsController.prototype.submitNewRestaurant = function() {
+  console.log('test')
+  document.getElementById('new-restaurant-form').submit();
 };
 
 module.exports = AdminRestaurantsController;

@@ -6,7 +6,8 @@
           ng-controller="adminRestaurantsController as ctrl">
   <h2>New Restaurant</h2>
   <div class="new_restaurant_form_container">
-    <form class="new_restaurant_form"
+    <form id="new-restaurant-form"
+          class="new_restaurant_form"
           action="{% url 'create-restaurant' %}"
           method="post">
           {% csrf_token %}
@@ -29,7 +30,8 @@
                 value=""
                 readonly
                 placeholder="Longitude">
-        <input class="form_submit_button" type="submit" name="" value="Submit Restaurant">
+        <a class="form_submit_button"
+            ng-click="ctrl.submitNewRestaurant()">Submit Restaurant</a>
       </div>
       <div class="restaurant_details">
         <input  ng-model="ctrl.newRestaurant.name"
