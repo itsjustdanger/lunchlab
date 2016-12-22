@@ -28,12 +28,22 @@ input,
 textarea {
   border: none;
   outline: none;
+  margin: 10px;
 }
 
 input {
   border: 1px solid $light-gray;
   color: $light-blue;
   font-size: 1.25em;
+  padding: 5px 10px;
+}
+
+input {
+  margin: 10px;
+}
+
+textarea {
+  border: 1px solid $light-gray;
   padding: 5px 10px;
 }
 

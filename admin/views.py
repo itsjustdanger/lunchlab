@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseForbidden
+from django.shortcuts import render, reverse
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 
 from restaurants.models import Restaurant
 
@@ -17,3 +17,20 @@ def new(request):
 
 def edit(request, id):
     pass
+
+def create(request):
+    name = request.POST['name']
+    address = request.POST['address']
+    description = request.POST['description']
+    lat = request.POST['latitude']
+    lng = request.POST['longitude']
+
+    restaurant = Restaurant.objects.create(name=name, address=address,
+                                            description=description,
+                                            lat=lat, lng=lng)
+
+    try:
+        restaurant.save()
+        return HttpResponseRedirect(reverse('admin-index'))
+    except:
+        return render(request, 'admin/new.html')

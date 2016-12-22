@@ -1,12 +1,13 @@
 var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $scope) {
   this._adminRestaurantsService = adminRestaurantsService;
   this._$scope = $scope;
-  this.map = undefined;
-  this.searchBox = undefined;
-  this.markers = [];
-  this.searchResults = [];
-  this.mapEl = document.getElementById('map');
   this.input = document.getElementById('address-input');
+  this.map = undefined;
+  this.mapEl = document.getElementById('map');
+  this.markers = [];
+  this.newRestaurant = {};
+  this.searchBox = undefined;
+  this.searchResults = [];
 
   this.initMap();
 };
@@ -85,6 +86,16 @@ AdminRestaurantsController.prototype.clearMarkers = function() {
 
 AdminRestaurantsController.prototype.clearResults = function() {
   this.searchResults = [];
+};
+
+AdminRestaurantsController.prototype.autocompleteForm = function(idx) {
+  // this.newRestaurant.name     = this.searchResults[idx].name;
+  // this.newRestaurant.address  = this.searchResults[idx].address;
+  // this.newRestaurant.lat      = this.searchResults[idx].lat;
+  // this.newRestaurant.lng      = this.searchResults[idx].lng;
+  this.newRestaurant = this.searchResults[idx];
+  console.log(idx);
+  console.log(this.searchResults[idx]);
 };
 
 module.exports = AdminRestaurantsController;

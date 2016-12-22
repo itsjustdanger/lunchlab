@@ -4,22 +4,67 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0VxVP-vZw_Nsu_FBvCOK0KrFBohhPN8A&libraries=places"></script>
 <section  class="new_restaurant_section"
           ng-controller="adminRestaurantsController as ctrl">
-  {[ctrl.searchResults.length]}
   <h2>New Restaurant</h2>
-  <label for="address">Enter an address to check for a valid location
-    <input id="address-input" type="text" name="address" value="">
-    <div id="map"></div>
-  </label>
+  <div class="new_restaurant_form_container">
+    <form class="new_restaurant_form"
+          action="{% url 'create-restaurant' %}"
+          method="post">
+          {% csrf_token %}
+      <div class="restaurant_location">
+        <input  id="address-input"
+                type="text"
+                ng-model="ctrl.newRestaurant.address"
+                name="address"
+                value=""
+                placeholder="Enter an address or search query to find a valid location">
+        <input  ng-model="ctrl.newRestaurant.lat"
+                type="text"
+                name="latitude"
+                value=""
+                readonly
+                placeholder="Latitude">
+        <input  ng-model="ctrl.newRestaurant.lng"
+                type="text"
+                name="longitude"
+                value=""
+                readonly
+                placeholder="Longitude">
+        <input class="form_submit_button" type="submit" name="" value="Submit Restaurant">
+      </div>
+      <div class="restaurant_details">
+        <input  ng-model="ctrl.newRestaurant.name"
+                type="text"
+                name="name"
+                value=""
+                placeholder="Restaurant Name">
+        <textarea ng-model="ctrl.newRestaurant.description"
+                  name="description"
+                  rows="8"
+                  cols="80"
+                  placeholder="Enter a detailed description..."></textarea>
+      </div>
+    </form>
+  </div>
 
-  <div class="new_restaurant_search_results">
-    <ul>
-      <li ng-repeat="restaurant in ctrl.searchResults">
-        <h5>{[restaurant.name]}</h5>
-        <p>{[restaurant.address]}</p>
-        <span>Lat: {[restaurant.lat]}</span>
-        <span>Lng: {[restaurant.lng]}</span>
-      </li>
-    </ul>
+  <div class="new_restaurant_map_data">
+    <div id="map"></div>
+    <div class="new_restaurant_search_results_container">
+      <h5>Click on a search result to populate restaurant information.</h5>
+      <div class="new_restaurant_search_results">
+        <p ng-if="!ctrl.searchResults.length && ctrl.newRestaurant.address">Looks like you didn't enter a valid address...</p>
+        <ul ng-if="ctrl.searchResults.length">
+          <li class="restaurant_search_result"
+          ng-repeat="restaurant in ctrl.searchResults">
+            <a ng-click="ctrl.autocompleteForm($index)">
+              <h5>{[restaurant.name]}</h5>
+              <p>{[restaurant.address]}</p>
+              <span>Lat: {[restaurant.lat]}</span>
+              <span>Lng: {[restaurant.lng]}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 
 </section>
