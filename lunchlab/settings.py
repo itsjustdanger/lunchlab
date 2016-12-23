@@ -139,8 +139,8 @@ USE_TZ = True
 #     AWS_SECRET_ACCESS_KEY = AWS['AWS_SECRET_ACCESS_KEY']
 # except:
     # AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-    AWS_ACCESS_KEY_ID = os.environ['S3_KEY']
-    AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
+AWS_ACCESS_KEY_ID = os.environ['S3_KEY']
+AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
 
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
