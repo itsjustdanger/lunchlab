@@ -15,31 +15,25 @@ var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $sc
 };
 
 AdminRestaurantsController.prototype.initMap = function() {
-  this.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: new google.maps.LatLng(40.73, -73.99),
-  });
+  var mapEl = document.getElementById('map');
+  var searchEl = document.getElementById('address-input');
 
-  this.searchBox = new google.maps.places.SearchBox(document.getElementById('address-input'));
+  this.map = new google.maps.Map(mapEl,
+    { zoom: 15, center: new google.maps.LatLng(40.73, -73.99) });
+  // this.getCurrentLocation(this.map);
+
+  this.searchBox = new google.maps.places.SearchBox(searchEl);
   this.searchBox.bindTo('bounds', this.map);
 
-  this.getCurrentLocation(this.map);
-
   this.searchBox.addListener('places_changed', function() {
-    var results = this.searchBox.getPlaces();
-    var bounds = this.map.getBounds();
+    var results = this._adminRestaurantsService
+        .search(this.searchBox, this.map, this.marker);
 
-    if (results.length === 0) {
-      console.log('nothing found');
-      return;
-    }
-
-    this.marker = this._adminRestaurantsService
-        .generateMapMarkers(results, this.marker, this.map);
-    this.map.fitBounds(bounds);
     this.autocompleteForm(results);
     this._$scope.$apply();
   }.bind(this));
+
+
 };
 
 AdminRestaurantsController.prototype.autocompleteForm = function(results) {

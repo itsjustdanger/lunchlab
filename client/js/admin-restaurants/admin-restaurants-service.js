@@ -43,7 +43,20 @@ AdminRestaurantsService.prototype.generateMapMarkers = function(locations, marke
     }
   }
 
-  return marker;
+  map.fitBounds(bounds);
+};
+
+AdminRestaurantsService.prototype.search = function(searchBox, map, marker) {
+  var results = searchBox.getPlaces();
+
+  if (results.length === 0) {
+    console.log('nothing found!');
+    return false;
+  }
+
+  this.generateMapMarkers(results, marker, map);
+
+  return results;
 };
 
 AdminRestaurantsService.prototype.dropMarker = function(marker, i, map) {

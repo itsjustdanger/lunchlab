@@ -1,5 +1,5 @@
 <div class="user_avatar_wrapper">
-  {% if user.lunchprofile.avatar != None %}
+  {% if user.lunchprofile.avatar %}
     <img class="user_avatar" src="{{ user.lunchprofile.avatar.url }}" alt="User Profile">
   {% else %}
     {% load staticfiles %}
