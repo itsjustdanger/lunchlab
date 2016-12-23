@@ -2,11 +2,13 @@
 
 {% block main %}
   <section class="restaurant_show_section">
-    <input type="hidden" id="restaurant-id" value="{{restaurant.id}}">
-    <h2>{{ restaurant.name }}</h2>
-    <p>{{ restaurant.description }}</p>
+    <a class="back_button" href="{% url 'index' %}"> << Back to Restaurants</a>
+    <div class="restaurant_detail_section">
+      <input type="hidden" id="restaurant-id" value="{{restaurant.id}}">
+      <h2 class="restaurant_name_header">{{ restaurant.name }}</h2>
+      <p class="restaurant_description">{{ restaurant.description }}</p>
+    </div>
 
-    
     <div class="restaurant_reviews_section" ng-controller="reviewsController as ctrl">
       <h3 class="restaurant_reviews_header">Reviews</h3>
       {% if not restaurant.user_reviewed and restaurant.visited %}
@@ -33,8 +35,5 @@
         </li>
       </ul>
     </div>
-
-    <a href="{% url 'index' %}">Back to Restaurants</a>
-
   </section>
 {% endblock %}

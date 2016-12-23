@@ -1,5 +1,26 @@
 .restaurant_show_section {
+  display: flex;
+  flex-direction: column;
 
+
+  .back_button {
+    color: $red;
+    margin: 10px;
+    padding: 5px 10px;
+    transition: color 0.4s;
+    width: 250px;
+
+    &:hover {
+      color: $dark-red;
+      cursor: pointer;
+    }
+  }
+}
+
+.restaurant_detail_section {
+  .restaurant_name_header {
+    margin: 10px 15px;
+  }
 }
 
 .restaurant_reviews_section {
