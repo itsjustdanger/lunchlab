@@ -10,3 +10,10 @@ class Restaurant(models.Model):
 
     def __str__(self):
         return self.name
+
+    def to_json(self):
+        return ({
+            'id': self.id,
+            'address': self.address,
+            'name': self.name,
+        })

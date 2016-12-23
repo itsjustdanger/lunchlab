@@ -14,12 +14,9 @@ def index(request):
 
     for r in Restaurant.objects.all():
         if r.id not in thumbs_down:
-            restaurants.append({
-                'id': r.id,
-                'address': r.address,
-                'name': r.name,
-                'visited': r in visited
-            })
+            restaurant = r.to_json()
+            restaurant['visited'] = r in visited
+            restaurants.append(restaurant)
 
     return JsonResponse(restaurants, safe=False)
 
@@ -28,22 +25,14 @@ def show(request, id):
 
     try:
         r = user.lunchprofile.visits.get(id=id)
-        r.visited = True
-        r.user_reviewed = Review.objects.filter(user_id=user.id, restuarant_id=id) != None
-
-
+        restaurant = r.to_json()
+        restaurant['visited'] = True
+        restaurant['user_reviewed'] = Review.objects.filter(user_id=user.id, restuarant_id=id) != None
     except:
         r = get_object_or_404(Restaurant, pk=id)
-        r.visited = False
-        r.user_reviewed = False
-    restaurant = {
-        'id': r.id,
-        'address': r.address,
-        'name': r.name,
-        'visited': r.visited
-    }
-
-    print ('~~~~>', r.user_reviewed)
+        restaurant = r.to_json()
+        restaurant['visited'] = False
+        restaurant['user_reviewed'] = False
 
     return JsonResponse(restaurant, safe=False)
 

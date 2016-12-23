@@ -4,7 +4,9 @@
   <section class="restaurant_show_section">
     <input type="hidden" id="restaurant-id" value="{{restaurant.id}}">
     <h2>{{ restaurant.name }}</h2>
+    <p>{{ restaurant.description }}</p>
 
+    
     <div class="restaurant_reviews_section" ng-controller="reviewsController as ctrl">
       <h3 class="restaurant_reviews_header">Reviews</h3>
       {% if not restaurant.user_reviewed and restaurant.visited %}
