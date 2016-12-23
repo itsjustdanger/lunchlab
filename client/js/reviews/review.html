@@ -17,25 +17,31 @@
   </div>
 </div>
 
-<div class="reivew_comments_section" ng-controller="commentsController as ctrl">
-  <a ng-click="ctrl.getComments(review.id)">Load Comments</a>
-  <section ng-if="ctrl.showComments">
-    <div>
-      <h4>Comment on this review</h4>
-      <input  type="text"
-      name="comment-body"
-      ng-model="ctrl.newComment.body"
-      value="">
-      <a ng-click="ctrl.submitNewComment(review.id)">Submit Comment</a>
-    </div>
+<div class="review_comments_section" ng-controller="commentsController as ctrl">
 
-    <div>
+  <a  class="load_comments_button"
+      ng-click="ctrl.getComments(review.id)">Comments</a>
+
+  <section ng-if="ctrl.showComments">
+    <div class="new_comment_form">
+      <h4>Comment on this review</h4>
+      <textarea type="text"
+                rows="5"
+                cols="60"
+                name="comment-body"
+                ng-model="ctrl.newComment.body"
+                value=""></textarea>
+      <a  class="submit_comment_button"
+          ng-click="ctrl.submitNewComment(review.id)">Submit Comment</a>
+    </div>
+    <div class="comments_list_section">
       <h4>Comments</h4>
       <ul ng-if="ctrl.comments.length > 0">
-        <li ng-repeat="comment in ctrl.comments">
-          <comment data="comment"></comment>
+        <li class="review_comment_list_item" ng-repeat="comment in ctrl.comments">
+          <comment class="review_comment" data="comment"></comment>
         </li>
       </ul>
     </div>
+    <a class="load_comments_button" ng-click="ctrl.hideComments()">Hide Comments</a>
   </section>
 </div>

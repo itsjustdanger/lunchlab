@@ -16,6 +16,10 @@ CommentsController.prototype.getComments = function(reviewId) {
     }.bind(this));
 };
 
+CommentsController.prototype.hideComments = function() {
+  this.showComments = false;
+};
+
 CommentsController.prototype.submitNewComment = function(reviewId) {
   if (this.newComment.body) {
     this.newComment.reviewId = reviewId;

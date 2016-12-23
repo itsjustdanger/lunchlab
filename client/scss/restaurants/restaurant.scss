@@ -1,10 +1,10 @@
 .restaurant_show_section {
-  padding: 25px;
 
 }
 
 .restaurant_reviews_section {
-
+  background: $background-gray;
+  padding: 25px;
 }
 
 .restaurant_reviews_list {
@@ -24,11 +24,13 @@
 }
 
 .restaurant_review {
-  border-bottom: 1px solid $background-gray;
+  border-bottom: 1px solid $light-gray;
+  margin: 15px 0;
 
   .review_content {
     align-items: center;
     display: flex;
+    margin: 10px 0;
 
     .review_user_info {
       margin: 0 15px;
@@ -50,10 +52,58 @@
   }
 
   .review_comments_section {
+    margin: 15px 0;
+    padding-left: 10px;
 
+    .load_comments_button {
+      background: $background-gray;
+      border: 1px solid $light-gray;
+      border-radius: 5px;
+      padding: 5px 10px;
+      transition: background, 0.4s;
+
+      &:hover {
+        background: $light-gray;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.comments_list_section {
+  margin: 15px 0;
+}
+
+.new_comment_form {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+
+  textarea {
+    margin: 10px 0;
+  }
+
+  .submit_comment_button {
+    background: $background-gray;
+    border: 1px solid $light-gray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    transition: background, 0.4s;
+    width: 120px;
+
+    &:hover {
+      background: $light-gray;
+      cursor: pointer;
+    }
   }
 }
 
 .restaurant_reviews_header {
   color: #F63440
+}
+
+.review_comment_list_item {
+  border-bottom: 1px solid $light-gray;
+  margin: 5px 0;
+  padding: 5px 10px;
 }
