@@ -12,4 +12,10 @@ AdminRestaurantsService.prototype.submitNewRestaurant = function(restaurantData)
   });
 };
 
+AdminRestaurantsService.prototype.getRestaurant = function(restaurantId) {
+  var url = '/api/restaurants/' + restaurantId + '/';
+
+  return this._$http.get(url);
+};
+
 module.exports = AdminRestaurantsService;

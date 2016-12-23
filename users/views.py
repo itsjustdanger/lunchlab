@@ -46,7 +46,7 @@ def create(request):
                 setattr(user, field, request.POST[field])
 
         if avatar:
-            user.lunchprofile.avatar
+            user.lunchprofile.avatar = avatar
         if password:
             user.set_password(password)
     else:

@@ -4,19 +4,23 @@ var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $sc
   this.input = document.getElementById('address-input');
   this.map = undefined;
   this.mapEl = document.getElementById('map');
+  this.restaurantId = document.getElementsByName('restaurant-id')[0].value;
   this.markers = [];
   this.newRestaurant = {};
   this.searchBox = undefined;
   this.searchResults = [];
 
   this.initMap();
+  if (this.restaurantId) {
+    this.loadRestaurant(this.restaurantId);
+  }
+
 };
 
 AdminRestaurantsController.prototype.initMap = function() {
   this.map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: new google.maps.LatLng(40.73, -73.99),
-    mapTypeId: 'terrain'
   });
 
   this.searchBox = new google.maps.places.SearchBox(this.input);
@@ -112,6 +116,15 @@ AdminRestaurantsController.prototype.getCurrentLocation = function(map) {
 AdminRestaurantsController.prototype.submitNewRestaurant = function() {
   console.log('test')
   document.getElementById('new-restaurant-form').submit();
+};
+
+AdminRestaurantsController.prototype.loadRestaurant = function(id) {
+  this._adminRestaurantsService
+    .getRestaurant(id)
+    .then(function success(response) {
+      this.newRestaurant = response.data;
+
+    }.bind(this));
 };
 
 module.exports = AdminRestaurantsController;

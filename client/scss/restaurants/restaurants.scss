@@ -20,6 +20,24 @@
   }
 }
 
+.restaurant_image_wrapper {
+  height: 175px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 280px;
+
+  .restaurant_image {
+    height: auto;
+    width: 280px;
+  }
+
+  .restaurant_image_default {
+    width: 50%;
+  }
+}
+
 .restaurant {
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -29,27 +47,6 @@
   text-align: left;
   width: 280px;
   height: 330px;
-
-  .restaurant_image_wrapper {
-    height: 175px;
-    margin-bottom: 10px;
-    position: relative;
-    text-align: center;
-    width: 280px;
-
-    .restaurant_image_default {
-      width: 50%;
-    }
-
-    &:after {
-      content: "";
-      height:2px;
-      background: $light-gray;
-      position: relative;
-      bottom: 0;
-      width: 120%;
-    }
-  }
 
   .restaurant_name {
     color: $dark-blue;

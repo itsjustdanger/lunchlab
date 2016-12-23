@@ -50,7 +50,7 @@ Development of *LunchLab* is going to be split into self-contained phases.
 
 ## To Do
 - Restaurant Creation Page
-  - Map inits with current user location
+  - ~~Map inits with current user location~~
   - No results selections? Only auto complete?
 - Restaurant Images
   - Add attachable images to restaurants

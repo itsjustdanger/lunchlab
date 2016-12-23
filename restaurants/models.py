@@ -7,6 +7,7 @@ class Restaurant(models.Model):
     description = models.TextField(default="")
     lat = models.DecimalField(max_digits=8, decimal_places=5, default=0)
     lng = models.DecimalField(max_digits=8, decimal_places=5, default=0)
+    image = models.ImageField(upload_to='restaurant-images', null=True)
 
     def __str__(self):
         return self.name
@@ -16,4 +17,6 @@ class Restaurant(models.Model):
             'id': self.id,
             'address': self.address,
             'name': self.name,
+            'lat': self.lat,
+            'lng': self.lng,
         })
