@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-from . import base_settings
+# from . import base_settings
 
 import dj_database_url
 
@@ -131,9 +131,14 @@ USE_TZ = True
 # Static/Media files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-AWS_STORAGE_BUCKET_NAME = base_settings.AWS_STORAGE_BUCKET_NAME
-AWS_ACCESS_KEY_ID = base_settings.AWS_ACCESS_KEY_ID
-AWS_SECRET_ACCESS_KEY = base_settings.AWS_SECRET_ACCESS_KEY
+try:
+    AWS_STORAGE_BUCKET_NAME = AWS['AWS_STORAGE_BUCKET_NAME']
+    AWS_ACCESS_KEY_ID = AWS['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = AWS['AWS_SECRET_ACCESS_KEY']
+except:
+    AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', True)
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', True)
 
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
