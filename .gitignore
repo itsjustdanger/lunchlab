@@ -17,6 +17,7 @@ node_modules/
 
 # Auth Secrets
 secrets.json
+base_settings.py
 
 # Django stuff:
 *.log
