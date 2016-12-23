@@ -16,7 +16,7 @@ import os
 import dj_database_url
 from boto.s3.connection import S3Connection
 
-s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+# s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -138,9 +138,9 @@ USE_TZ = True
 #     AWS_ACCESS_KEY_ID = AWS['AWS_ACCESS_KEY_ID']
 #     AWS_SECRET_ACCESS_KEY = AWS['AWS_SECRET_ACCESS_KEY']
 # except:
-#     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
-#     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', True)
-#     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', True)
+    # AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+    AWS_ACCESS_KEY_ID = os.environ['S3_KEY']
+    AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
 
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
