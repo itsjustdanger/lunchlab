@@ -12,6 +12,7 @@
 }
 
 .auth_form_inputs_row {
+  align-items: center;
   display: flex;
   margin: 15px 0;
 
@@ -21,6 +22,11 @@
     &:first-child {
       margin-left: 0;
     }
+  }
+
+  .auth_image_input {
+    display: flex;
+    border: none;
   }
 
   .auth_admin_box_label {
@@ -35,6 +41,8 @@
 }
 
 .auth_submit_button {
+  background: #fff;
+
   &:hover {
     cursor: pointer;
   }

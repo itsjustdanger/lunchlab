@@ -6,7 +6,10 @@
 
   {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-  <form action="{% url 'create' %}" method="post">
+  <form action="{% url 'create' %}"
+        method="post"
+        enctype="multipart/form-data">
+
     {% csrf_token %}
     <div class="auth_form_inputs_row">
       <input  type="text"
@@ -31,7 +34,6 @@
               name="last-name"
               value=""
               placeholder="Last Name">
-
     </div>
     <div class="auth_form_inputs_row">
       <input  type="text"
@@ -39,13 +41,19 @@
       value=""
       placeholder="Email">
 
-
       <label class="auth_admin_box_label" for="is-admin">
         Is Admin?
         <input  type="checkbox"
         name="is-admin"
         value="">
       </label>
+    </div>
+
+    <div class="auth_form_inputs_row">
+      <span>Profile Image</span>
+      <input  class="auth_image_input"
+              type="file"
+              name="user-image">
     </div>
 
     <input class="auth_submit_button" type="submit" value="Sign Up">

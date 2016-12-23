@@ -13,6 +13,9 @@
   </div>
   <div class="header_user-management">
     {% if user.is_authenticated %}
+      <div class="user_avatar_wrapper">
+        <img class="user_avatar" src="{{ user.lunchprofile.avatar.url }}" alt="User Profile">
+      </div>
       <p class="header_copy">Hey, {{user.first_name}}!</p>
       <a class="user-management_link" href="{% url 'sign-out' %}">Sign Out</a>
     {% else %}

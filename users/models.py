@@ -11,6 +11,7 @@ class LunchProfile(models.Model):
     can_create_restaurants = models.BooleanField(default=False)
     visits = models.ManyToManyField(Restaurant, related_name='visitors')
     thumbsdowns = models.ManyToManyField(Restaurant, related_name='thumbsdown_users')
+    avatar = models.ImageField(upload_to="avatars", null=True)
 
 @receiver(post_save, sender=User)
 def create_lunch_profile(sender, instance, created, **kwargs):
