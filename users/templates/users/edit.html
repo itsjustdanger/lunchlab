@@ -2,7 +2,7 @@
 
 {% block main %}
 <section class="auth_section">
-  <h2 class="auth_section_header">Sign Up</h2>
+  <h2 class="auth_section_header">Edit Profile</h2>
 
   {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
@@ -14,49 +14,46 @@
     <div class="auth_form_inputs_row">
       <input  type="text"
               name="username"
-              value=""
+              value="{{user.username}}"
               placeholder="Username"
+              readonly
               required>
 
       <input  type="password"
               name="password"
               value=""
-              placeholder="Password"
-              required>
+              placeholder="Password">
     </div>
     <div class="auth_form_inputs_row">
       <input  type="text"
               name="first_name"
-              value=""
+              value="{{user.first_name}}"
               placeholder="First Name">
 
       <input  type="text"
               name="last_name"
-              value=""
+              value="{{user.last_name}}"
               placeholder="Last Name">
     </div>
     <div class="auth_form_inputs_row">
       <input  type="text"
-      name="email"
-      value=""
-      placeholder="Email">
-
-      <label class="auth_admin_box_label" for="is-admin">
-        Is Admin?
-        <input  type="checkbox"
-        name="is-admin"
-        value="">
-      </label>
+              name="email"
+              value="{{user.email}}"
+              placeholder="Email">
     </div>
 
     <div class="auth_form_inputs_row">
-      <span>Profile Image</span>
+      <span>Change Profile Image</span>
       <input  class="auth_image_input"
               type="file"
               name="user-image">
+
+      <div class="user_avatar_wrapper">
+        <img class="user_avatar" src="{{ user.lunchprofile.avatar.url }}" alt="">
+      </div>
     </div>
 
-    <input class="auth_submit_button" type="submit" value="Sign Up">
+    <input class="auth_submit_button" type="submit" value="Submit Changes">
   </form>
 
 </section>

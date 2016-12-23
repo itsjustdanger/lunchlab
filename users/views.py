@@ -27,19 +27,34 @@ def sign_in(request):
 def new(request):
     return render(request, 'users/new.html')
 
+EDITABLE_FIELDS = ['first_name', 'last_name', 'email']
+
 def create(request):
+    user = request.user if request.user.is_authenticated() else None
+
     username = request.POST['username']
     password = request.POST['password']
-    first_name = request.POST['first-name']
-    last_name = request.POST['last-name']
+    first_name = request.POST['first_name']
+    last_name = request.POST['last_name']
     email = request.POST['email']
-    avatar = request.FILES['user-image']
+    avatar = request.FILES['user-image'] if 'user-image' in request.FILES else None
     can_create_restaurants = 'is-admin' in request.POST
 
-    user = User.objects.create_user(username=username, password=password,
-            first_name=first_name, last_name=last_name, email=email)
-    user.lunchprofile.can_create_restaurants = can_create_restaurants
-    user.lunchprofile.avatar = avatar
+    if user:
+        for field in EDITABLE_FIELDS:
+            if getattr(user, field) != request.POST[field]:
+                setattr(user, field, request.POST[field])
+
+        if avatar:
+            user.lunchprofile.avatar
+        if password:
+            user.set_password(password)
+    else:
+        user = User.objects.create_user(username=username, password=password,
+                first_name=first_name, last_name=last_name, email=email)
+        user.lunchprofile.can_create_restaurants = can_create_restaurants
+        user.lunchprofile.avatar = avatar
+
     user.save()
 
     if user is not None:
@@ -47,4 +62,12 @@ def create(request):
         return HttpResponseRedirect(reverse('index'))
     else:
         return render(request, 'users/new.html',
-            {'error_message': 'Somethin went wrong...'})
+            {'error_message': 'Something went wrong...'})
+
+def edit(request):
+    user = request.user if request.user.is_authenticated() else None
+
+    if not user:
+        return HttpResponseRedirect(reverse('sign-up'))
+
+    return render(request, 'users/edit.html', {'user': user})

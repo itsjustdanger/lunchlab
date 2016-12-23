@@ -13,11 +13,13 @@
   </div>
   <div class="header_user-management">
     {% if user.is_authenticated %}
+    <a class="edit_user_link" href="{% url 'edit-user' %}">
       <div class="user_avatar_wrapper">
         <img class="user_avatar" src="{{ user.lunchprofile.avatar.url }}" alt="User Profile">
       </div>
       <p class="header_copy">Hey, {{user.first_name}}!</p>
       <a class="user-management_link" href="{% url 'sign-out' %}">Sign Out</a>
+    </a>
     {% else %}
       <a class="user-management_link" href="{% url 'sign-in' %}">Sign In</a>
       <a class="user-management_link" href="{% url 'sign-up' %}">Sign Up</a>

@@ -36,6 +36,10 @@ header {
   display: flex;
 }
 
+.edit_user_link {
+  display: flex;
+}
+
 
 .header_user-management {
   align-items: center;
@@ -44,6 +48,7 @@ header {
 
   .user_avatar_wrapper {
     border-radius: 50%;
+    height: 50px;
     margin: 15px;
     overflow: hidden;
 

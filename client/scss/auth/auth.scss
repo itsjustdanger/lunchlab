@@ -27,6 +27,7 @@
   .auth_image_input {
     display: flex;
     border: none;
+    width: 215px;
   }
 
   .auth_admin_box_label {
@@ -36,6 +37,17 @@
 
     input {
       margin-left: 15px;
+    }
+  }
+
+  .user_avatar_wrapper {
+    border-radius: 50%;
+    height: 50px;
+    overflow: hidden;
+
+    .user_avatar {
+      height: 50px;
+      width: auto;
     }
   }
 }
