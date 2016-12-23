@@ -147,7 +147,7 @@ AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
 # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
 # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
 # We also use it in the next setting.
-AWS_STORAGE_BUCKET_NAME = 'lunchlab'
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
