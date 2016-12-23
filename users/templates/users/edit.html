@@ -48,9 +48,7 @@
               type="file"
               name="user-image">
 
-      <div class="user_avatar_wrapper">
-        <img class="user_avatar" src="{{ user.lunchprofile.avatar.url }}" alt="">
-      </div>
+      {% include 'user/_avatar.html' %}
     </div>
 
     <input class="auth_submit_button" type="submit" value="Submit Changes">

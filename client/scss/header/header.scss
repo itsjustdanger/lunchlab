@@ -46,18 +46,6 @@ header {
   display: flex;
   position: relative;
 
-  .user_avatar_wrapper {
-    border-radius: 50%;
-    height: 50px;
-    margin: 15px;
-    overflow: hidden;
-
-    .user_avatar {
-      height: 50px;
-      width: auto;
-    }
-  }
-
   .user-management_link {
     border: 1px solid #fff;
     border-radius: 5px;

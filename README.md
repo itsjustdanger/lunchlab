@@ -3,16 +3,16 @@
 *LunchLab* is a web app that helps hungry users find great spots to lunch.
 
 ### Required Features:
-  - Keeps track of users' visited restaurants
-  - Users can read reviews for a restaurant
-  - Users can write reviews for visited restaurants
-  - Other users can comment on reviews
-  - Can 'thumbs-down' a restaurant to remove it from consideration
-  - Admins can add restaurants
-  - When adding a restaurant, find the lat/lng based on the address
-  - Handle incorrect address entry
-  - User profiles have profile pictures, and can be edited
-  - Users have a dashboard/feed with lunch options
+  - [x] Keeps track of users' visited restaurants
+  - [x] Users can read reviews for a restaurant
+  - [x] Users can write reviews for visited restaurants
+  - [x] Other users can comment on reviews
+  - [x] Can 'thumbs-down' a restaurant to remove it from consideration
+  - [x] Admins can add restaurants
+  - [x] When adding a restaurant, find the lat/lng based on the address
+  - [x] Handle incorrect address entry
+  - [x] User profiles have profile pictures, and can be edited
+  - [x] Users have a dashboard/feed with lunch options
 
 Development of *LunchLab* is going to be split into self-contained phases.
 
@@ -44,10 +44,22 @@ Development of *LunchLab* is going to be split into self-contained phases.
   - ~~Users' home pages are feeds of restaurants options (visited/unvisted)~~
   - ~~Users can 'thumbs-down' a restaurant option to permanently remove it from the feed~~
 #### User Profile
-  - Users have profile pages with profile pictures and editable details
+  - ~~Users have profile pages with profile pictures and editable details~~
 
 
 
 ## To Do
-- Refactor restaurant JSON conversion: right now we're doing it in a few places. Create a to_json method either on the model or somewhere reasonable.
+- Restaurant Creation Page
+  - Map inits with current user location
+  - No results selections? Only auto complete?
+- Restaurant Images
+  - Add attachable images to restaurants
+  - Pre-populate images based on google maps image api (if possible)
+  - Users can submit images to restaurants?
+- Restaurant Show pages
+  - Add additional details/content to restaurant show pages
+  - Add map display with marker to restaurant show pages.
+- Restaurant Reviews/Comments
+  - Style reviews with author information
+  - Style comments with author information and better load button
 - Add user information directly to review model.

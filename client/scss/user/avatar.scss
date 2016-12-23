@@ -1,0 +1,12 @@
+.user_avatar_wrapper {
+  border-radius: 50%;
+  height: 50px;
+  margin: 15px;
+  overflow: hidden;
+  width: 50px;
+
+  .user_avatar {
+    height: 50px;
+    width: auto;
+  }
+}

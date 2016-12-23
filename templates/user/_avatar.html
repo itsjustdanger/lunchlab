@@ -1,0 +1,8 @@
+<div class="user_avatar_wrapper">
+  {% if user.lunchprofile.avatar != None %}
+    <img class="user_avatar" src="{{ user.lunchprofile.avatar.url }}" alt="User Profile">
+  {% else %}
+    {% load staticfiles %}
+    <img class="user_avatar" src="{% static 'assets/no-avatar.png' %}" alt="User Profile">
+  {% endif %}
+</div>

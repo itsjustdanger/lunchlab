@@ -22,6 +22,8 @@ AdminRestaurantsController.prototype.initMap = function() {
   this.searchBox = new google.maps.places.SearchBox(this.input);
   this.searchBox.bindTo('bounds', this.map);
 
+  this.getCurrentLocation(this.map);
+
   this.searchBox.addListener('places_changed', function() {
     var results = this.searchBox.getPlaces();
     var bounds = this.map.getBounds();
@@ -90,6 +92,21 @@ AdminRestaurantsController.prototype.autocompleteForm = function(idx) {
   this.newRestaurant.address  = this.searchResults[idx].address;
   this.newRestaurant.lat      = this.searchResults[idx].lat;
   this.newRestaurant.lng      = this.searchResults[idx].lng;
+};
+
+AdminRestaurantsController.prototype.getCurrentLocation = function(map) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      map.setCenter(pos);
+    }, function() {
+      console.log('Error loading current location.');
+    });
+  }
 };
 
 AdminRestaurantsController.prototype.submitNewRestaurant = function() {
