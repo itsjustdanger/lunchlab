@@ -13,6 +13,14 @@ class LunchProfile(models.Model):
     thumbsdowns = models.ManyToManyField(Restaurant, related_name='thumbsdown_users')
     avatar = models.ImageField(upload_to="avatars", null=True)
 
+    def to_json(self):
+        return {
+            'firstName': self.user.first_name,
+            'lastName': self.user.last_name,
+            'username': self.user.username,
+            'avatar': self.avatar.url if self.avatar else '',
+        }
+
 @receiver(post_save, sender=User)
 def create_lunch_profile(sender, instance, created, **kwargs):
     if created:

@@ -9,15 +9,11 @@ def index(request):
     restaurant_id = request.GET.get('restaurant', '')
     reviews = []
 
-    for r in Review.objects.filter(restaurant_id=restaurant_id):
-        reviews.append({
-            'id': r.pk,
-            'title': r.title,
-            'body': r.body,
-            'userId': r.user_id,
-            'isUserReview': (user and r.user_id == user.id),
-            'restaurantId': r.restaurant_id
-        })
+    for r in Review.objects.filter(restaurant_id=restaurant_id).prefetch_related('user'):
+        review = r.to_json()
+        review['isUserReview'] = (user and user.id == r.user_id)
+        review['user'] = r.user.lunchprofile.to_json()
+        reviews.append(review)
 
     return JsonResponse(reviews, safe=False)
 
@@ -25,14 +21,8 @@ def show(request, id):
     user = request.user if request.user.is_authenticated() else None
     r = get_object_or_404(Review, id=id)
 
-    review = {
-        'id': r.pk,
-        'title': r.title,
-        'body': r.body,
-        'userId': r.user_id,
-        'isUserReview': (user and r.user_id == user.id),
-        'restaurantId': r.restaurant_id
-    }
+    review = r.to_json()
+    review['isUserReview'] = (user and user.id == r.user_id)
 
     return JsonResponse(review, safe=False)
 

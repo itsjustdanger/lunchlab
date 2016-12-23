@@ -14,7 +14,6 @@ RestaurantsController.prototype.getRestaurants = function() {
       var restaurants = response.data;
 
       restaurants.forEach(function (restaurant) {
-        console.log(restaurant);
 
         if (restaurant.visited) {
           this.visited.push(restaurant);
