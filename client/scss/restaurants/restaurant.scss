@@ -27,6 +27,7 @@
   border-bottom: 1px solid $background-gray;
 
   .review_content {
+    align-items: center;
     display: flex;
 
     .review_user_info {
@@ -35,6 +36,7 @@
     }
 
     .review_copy {
+      align-self: flex-start;
       margin: 0 15px;
       width: 400px;
 
