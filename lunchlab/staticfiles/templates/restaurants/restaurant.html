@@ -1,0 +1,13 @@
+<a class="restaurant_link" href="/restaurants/{[restaurant.id]}">
+  <div class="restaurant_image_wrapper">
+    <img  ng-if="restaurant.image"
+          ng-src="{[restaurant.image]}"
+          alt="{[restaurant.name]}" />
+    <img  class="restaurant_image_default"
+          ng-if="!restaurant.image"
+          ng-src="./static/assets/lunchlab-logo.svg"
+          alt="{[restaurant.name]}" />
+  </div>
+  <h4 class="restaurant_name">{[restaurant.name]}</h4>
+  <p class="restaurant_address">{[restaurant.address]}</p>
+</a>
