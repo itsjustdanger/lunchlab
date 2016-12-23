@@ -1,1 +1,1 @@
-web: gunicorn lunchlab.wsgi
+web: gunicorn lunchlab.wsgi --log-file -
