@@ -12,19 +12,23 @@
   }
 }
 
+.new_restaurant_form_container {
+  display: flex;
+}
+
 .new_restaurant_form {
   display: flex;
+  flex-direction: column;
+  width: 50%;
 
   .restaurant_location {
     display: flex;
     flex-direction: column;
-    width: 50%;
   }
 
   .restaurant_details {
     display: flex;
     flex-direction: column;
-    width: 50%;
   }
 }
 
@@ -33,31 +37,8 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: 15px;
-  min-width: 1080px;
+  width: 50%;
   padding: 15px;
-
-  .new_restaurant_search_results_container {
-    margin: 0 25px;
-    width: 40%;
-  }
-
-  .new_restaurant_search_results {
-    border: 1px solid $light-gray;
-    height: 425px;
-    overflow-y: scroll;
-  }
-
-  .restaurant_search_result {
-    border-bottom: 1px solid $light-gray;
-    padding: 10px;
-
-    a {
-      &:hover {
-        color: $light-blue;
-        cursor: pointer;
-      }
-    }
-  }
 }
 
 .restaurant_image_row {
@@ -76,6 +57,6 @@
 }
 
 #map {
-  height: 450px;
-  width: 55%;
+  height: 100%;
+  width: 100%;
 }

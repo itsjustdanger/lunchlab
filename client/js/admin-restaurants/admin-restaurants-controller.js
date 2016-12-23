@@ -1,14 +1,11 @@
 var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $scope) {
   this._adminRestaurantsService = adminRestaurantsService;
   this._$scope = $scope;
-  this.input = document.getElementById('address-input');
   this.map = undefined;
-  this.mapEl = document.getElementById('map');
-  this.restaurantId = document.getElementsByName('restaurant-id')[0].value;
-  this.markers = [];
-  this.newRestaurant = {};
   this.searchBox = undefined;
-  this.searchResults = [];
+  this.restaurantId = document.getElementsByName('restaurant-id')[0].value;
+  this.marker;
+  this.restaurant = {};
 
   this.initMap();
   if (this.restaurantId) {
@@ -19,11 +16,11 @@ var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $sc
 
 AdminRestaurantsController.prototype.initMap = function() {
   this.map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
+    zoom: 15,
     center: new google.maps.LatLng(40.73, -73.99),
   });
 
-  this.searchBox = new google.maps.places.SearchBox(this.input);
+  this.searchBox = new google.maps.places.SearchBox(document.getElementById('address-input'));
   this.searchBox.bindTo('bounds', this.map);
 
   this.getCurrentLocation(this.map);
@@ -37,65 +34,19 @@ AdminRestaurantsController.prototype.initMap = function() {
       return;
     }
 
-    this.generateMarkers(results, bounds);
+    this.marker = this._adminRestaurantsService
+        .generateMapMarkers(results, this.marker, this.map);
     this.map.fitBounds(bounds);
+    this.autocompleteForm(results);
     this._$scope.$apply();
   }.bind(this));
 };
 
-AdminRestaurantsController.prototype.generateMarkers = function(results, bounds) {
-  this.clearMarkers();
-  this.clearResults();
-
-  for (var i = 0; i < results.length; i++) {
-    this.markers[i] = new google.maps.Marker({
-      position: results[i].geometry.location,
-      animation: google.maps.Animation.DROP,
-    });
-
-    this.searchResults[i] = {
-      name: results[i].name,
-      // photo: results[i].photos[0].getUrl(),
-      address: results[i].formatted_address,
-      lat: results[i].geometry.location.lat(),
-      lng: results[i].geometry.location.lng()
-    };
-
-    setTimeout(this.dropMarker(i), i * 100);
-
-    if (bounds) {
-      if (results[i].geometry.viewport) {
-        bounds.union(results[i].geometry.viewport);
-      }
-
-      bounds.extend(results[i].geometry.location);
-    }
-  }
-};
-
-AdminRestaurantsController.prototype.dropMarker = function(i) {
-  return function() {
-    this.markers[i].setMap(this.map);
-  }.bind(this);
-};
-
-AdminRestaurantsController.prototype.clearMarkers = function() {
-  this.markers.forEach(function(marker) {
-    marker.setMap(null);
-  }.bind(this));
-
-  this.markers = [];
-};
-
-AdminRestaurantsController.prototype.clearResults = function() {
-  this.searchResults = [];
-};
-
-AdminRestaurantsController.prototype.autocompleteForm = function(idx) {
-  this.newRestaurant.name     = this.searchResults[idx].name;
-  this.newRestaurant.address  = this.searchResults[idx].address;
-  this.newRestaurant.lat      = this.searchResults[idx].lat;
-  this.newRestaurant.lng      = this.searchResults[idx].lng;
+AdminRestaurantsController.prototype.autocompleteForm = function(results) {
+  this.restaurant.name     = results[0].name;
+  this.restaurant.address  = results[0].formatted_address;
+  this.restaurant.lat      = results[0].geometry.location.lat();
+  this.restaurant.lng      = results[0].geometry.location.lng();
 };
 
 AdminRestaurantsController.prototype.getCurrentLocation = function(map) {
@@ -122,7 +73,7 @@ AdminRestaurantsController.prototype.loadRestaurant = function(id) {
   this._adminRestaurantsService
     .getRestaurant(id)
     .then(function success(response) {
-      this.newRestaurant = response.data;
+      this.restaurant = response.data;
 
     }.bind(this));
 };

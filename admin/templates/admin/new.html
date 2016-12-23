@@ -13,20 +13,32 @@
           enctype="multipart/form-data">
           {% csrf_token %}
       <input type="hidden" name="restaurant-id" value="">
+      <div class="restaurant_details">
+        <input  ng-model="ctrl.restaurant.name"
+                type="text"
+                name="name"
+                value=""
+                placeholder="Restaurant Name">
+        <textarea ng-model="ctrl.restaurant.description"
+                  name="description"
+                  rows="8"
+                  cols="80"
+                  placeholder="Enter a detailed description..."></textarea>
+      </div>
       <div class="restaurant_location">
         <input  id="address-input"
                 type="text"
-                ng-model="ctrl.newRestaurant.address"
+                ng-model="ctrl.restaurant.address"
                 name="address"
                 value=""
-                placeholder="Enter an address or search query to find a valid location">
-        <input  ng-model="ctrl.newRestaurant.lat"
+                placeholder="Enter an address to find a valid location">
+        <input  ng-model="ctrl.restaurant.lat"
                 type="text"
                 name="latitude"
                 value=""
                 readonly
                 placeholder="Latitude">
-        <input  ng-model="ctrl.newRestaurant.lng"
+        <input  ng-model="ctrl.restaurant.lng"
                 type="text"
                 name="longitude"
                 value=""
@@ -41,39 +53,9 @@
         <a class="form_submit_button"
             ng-click="ctrl.submitNewRestaurant()">Submit Restaurant</a>
       </div>
-      <div class="restaurant_details">
-        <input  ng-model="ctrl.newRestaurant.name"
-                type="text"
-                name="name"
-                value=""
-                placeholder="Restaurant Name">
-        <textarea ng-model="ctrl.newRestaurant.description"
-                  name="description"
-                  rows="8"
-                  cols="80"
-                  placeholder="Enter a detailed description..."></textarea>
-      </div>
     </form>
-  </div>
-
-  <div class="new_restaurant_map_data">
-    <div id="map"></div>
-    <div class="new_restaurant_search_results_container">
-      <h5>Click on a search result to populate restaurant information.</h5>
-      <div class="new_restaurant_search_results">
-        <p ng-if="!ctrl.searchResults.length && ctrl.newRestaurant.address">Looks like you didn't enter a valid address...</p>
-        <ul ng-if="ctrl.searchResults.length">
-          <li class="restaurant_search_result"
-          ng-repeat="restaurant in ctrl.searchResults">
-            <a ng-click="ctrl.autocompleteForm($index)">
-              <h5>{[restaurant.name]}</h5>
-              <p>{[restaurant.address]}</p>
-              <span>Lat: {[restaurant.lat]}</span>
-              <span>Lng: {[restaurant.lng]}</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+    <div class="new_restaurant_map_data">
+      <div id="map"></div>
     </div>
   </div>
 

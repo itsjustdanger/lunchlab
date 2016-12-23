@@ -50,12 +50,9 @@ Development of *LunchLab* is going to be split into self-contained phases.
 
 ## To Do
 - Restaurant Creation Page
-  - ~~Map inits with current user location~~
   - No results selections? Only auto complete?
-- Restaurant Images
-  - Add attachable images to restaurants
+  - Refactor admin-restaurants-controller
   - Pre-populate images based on google maps image api (if possible)
-  - Users can submit images to restaurants?
 - Restaurant Show pages
   - Add additional details/content to restaurant show pages
   - Add map display with marker to restaurant show pages.
