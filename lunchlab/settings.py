@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'aanjlc!p21c9cm%uzmmp69k#d)-e6=xv)0%pbc-js0gam+=mt4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['young-oasis-28629.herokuapp.com']
 
