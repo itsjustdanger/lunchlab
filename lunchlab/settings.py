@@ -30,7 +30,7 @@ SECRET_KEY = 'aanjlc!p21c9cm%uzmmp69k#d)-e6=xv)0%pbc-js0gam+=mt4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['lunchlab.herokuapp.com', 'lunchlab.io', 'localhost']
+ALLOWED_HOSTS = ['www.lunchlab.io', 'lunchlab.herokuapp.com', 'lunchlab.io', 'localhost']
 
 
 # Application definition
