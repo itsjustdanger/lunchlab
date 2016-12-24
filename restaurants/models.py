@@ -19,4 +19,5 @@ class Restaurant(models.Model):
             'name': self.name,
             'lat': self.lat,
             'lng': self.lng,
+            'image': self.image.url if self.image else ''
         })

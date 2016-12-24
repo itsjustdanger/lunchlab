@@ -13,6 +13,7 @@ NUM_REVIEWS = 100
 NUM_COMMENTS = 400
 
 avatar_base_url = 'https://s3.amazonaws.com/lunchlab/avatars/'
+rest_base_url = 'https://s3.amazonaws.com/lunchlab/restaurant-images/'
 
 username_prefixes = ['super', 'evil', 'mega', 'ultra', 'diner', 'preemptive', 'django', 'mondo', 'hero', 'villain', 'sidekick', 'pastafiend', 'adventurous', 'special', 'shy', 'friendly', 'sly', 'sneaky', 'outrageous', 'careful', 'callous', 'mysterious', 'magical', 'able', 'active', 'astute', 'ample', 'brave', 'creepy', 'daring', 'fake', 'famous', 'flammable', 'great', 'gross', 'grand', 'hero', 'imaginary', 'joker', 'jester', 'jarring', 'king', 'knowing', 'lamenting', 'loser', 'neighbor', 'ocean', 'oedipus', 'ophelia', 'prince', 'princess', 'hamlet', 'lear']
 
@@ -65,6 +66,19 @@ def create_restaurants():
         restaurant = Restaurant.objects.create(name=rest['name'],
                 address=rest['address'], description=lorem,
                 lat=rest['lat'], lng=rest['lng'])
+
+        image_url = ''.join([rest_base_url, 'food', str(random.randint(1, 16)), '.jpg'])
+
+        response = urlopen(image_url)
+
+        with open('tmp_img', 'wb') as f:
+            f.write(response.read())
+
+        with open('tmp_img', 'rb') as f:
+            image_file = File(f)
+            file_name = ''.join(['restaurant-', str(random.randint(0, 10000)), '.jpg'])
+            restaurant.image.save(file_name, image_file)
+        os.remove('tmp_img')
         restaurant.save()
 
 def create_review(users, restaurants):
