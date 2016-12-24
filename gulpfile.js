@@ -37,6 +37,8 @@ var production = !!argv.production;
 var build = argv._.length ? argv._[0] === 'build' : false;
 var watch = argv._.length ? argv._[0] === 'watch' : true;
 
+
+var destBase = './lunchlab/static/';
 // ----------------------------
 // Error notification methods
 // ----------------------------
@@ -60,21 +62,21 @@ var tasks = {
   // --------------------------
   prepareTemplates: function() {
     return gulp.src('./client/js/*/*.html')
-      .pipe(gulp.dest('static/templates/'));
+      .pipe(gulp.dest(destBase + 'templates/'));
   },
 
   // --------------------------
   // Delete build folder
   // --------------------------
   clean: function(cb) {
-    del(['static/'], cb);
+    del([destBase], cb);
   },
   // --------------------------
   // Copy static assets
   // --------------------------
   assets: function() {
     return gulp.src('./client/assets/**/*')
-      .pipe(gulp.dest('static/assets/'));
+      .pipe(gulp.dest(destBase + 'assets/'));
   },
   // --------------------------
   // SASS (libsass)
@@ -111,7 +113,7 @@ var tasks = {
       .pipe(concat('styles.css'))
 
       // give it a file and save
-      .pipe(gulp.dest('static/css'));
+      .pipe(gulp.dest(destBase + destBase + 'css'));
   },
   // --------------------------
   // Browserify
@@ -133,7 +135,7 @@ var tasks = {
         .pipe(source('build.js'))
         .pipe(gulpif(production, buffer()))
         .pipe(gulpif(production, uglify()))
-        .pipe(gulp.dest('static/js/'));
+        .pipe(gulp.dest(destBase + 'js/'));
     };
     bundler.on('update', rebundle);
     return rebundle();

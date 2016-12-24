@@ -14,47 +14,13 @@
   - [x] User profiles have profile pictures, and can be edited
   - [x] Users have a dashboard/feed with lunch options
 
-Development of *LunchLab* is going to be split into self-contained phases.
+## Deployment
+To deploy the app, it's recommended you create a virtual environment and use pip to load the requirements found in the requirements.txt file. Once you do that, you'll need to set three primary environment variables [S3_KEY, S3_SECRET, and S3_BUCKET] to handle media file uploads and downloads with S3.
 
-## Phase 1
-#### Restaurants and Users
-  - ~~Users can view list of restaurants~~
-  - ~~Users can view an individual restaurant's page~~
+You should then use `npm install` to load all the front end requirements and run the standard gulp action to process js/scss/assets to the `lunchlab/static` folder. Then, you'll likely want to run `python manage.py collectstatic` so django will load all your static files for you.
 
-## Phase 2
-#### Visiting
-  - ~~Users can 'visit' restaurants~~
-  - ~~Users can see all of their visited restaurants~~
-
-#### Reviews
-  - ~~Users can review 'visited' restaurants~~
-  - ~~Users can comment on other users' reviews~~
-
-
-## Phase 3
-#### Admins and New Restaurants
-  - ~~Only Admins can create restaurants~~
-  - ~~When adding restaurants, restaurant name is auto-completed~~
-  - ~~When adding restaurants, lat/lng is returned~~
-  - ~~When adding restaurants, handle incorrect addresses~~
-
-
-## Phase 4
-#### User Feed
-  - ~~Users' home pages are feeds of restaurants options (visited/unvisted)~~
-  - ~~Users can 'thumbs-down' a restaurant option to permanently remove it from the feed~~
-#### User Profile
-  - ~~Users have profile pages with profile pictures and editable details~~
-
-
+From there you should be able to run a local server or configure the app for deployment.
 
 ## To Do
-- Restaurant Creation Page
-  - Pre-populate images based on google maps image api (if possible)
 - Restaurant Show pages
   - Add additional details/content to restaurant show pages
-  - Add map display with marker to restaurant show pages.
-- Restaurant Reviews/Comments
-  - Style reviews with author information
-  - Style comments with author information and better load button
-- Add user information directly to review model.

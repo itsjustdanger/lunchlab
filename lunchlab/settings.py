@@ -135,9 +135,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 
-AWS_ACCESS_KEY_ID = os.environ['S3_KEY']
-AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
-AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
+AWS_ACCESS_KEY_ID = os.environ['S3_KEY'] if 'S3_KEY' in os.environ else ''
+AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET'] if 'S3_SECRET' in os.environ else ''
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET'] if 'S3_BUCKET' in os.environ else ''
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
 # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
 # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
