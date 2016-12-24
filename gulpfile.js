@@ -113,7 +113,7 @@ var tasks = {
       .pipe(concat('styles.css'))
 
       // give it a file and save
-      .pipe(gulp.dest(destBase + destBase + 'css'));
+      .pipe(gulp.dest(destBase + 'css'));
   },
   // --------------------------
   // Browserify
