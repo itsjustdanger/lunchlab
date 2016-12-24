@@ -45,7 +45,9 @@ def create(request):
 
         restaurant = Restaurant.objects.create(name=name, address=address,
                                             description=description,
-                                            lat=lat, lng=lng, image=image)
+                                            lat=lat, lng=lng)
+        if image:
+            restaurant.image = image
 
     try:
         restaurant.save()

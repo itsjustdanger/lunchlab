@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-# from . import base_settings
+from . import base_settings
 
 import dj_database_url
 from boto.s3.connection import S3Connection

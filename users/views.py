@@ -53,7 +53,8 @@ def create(request):
         user = User.objects.create_user(username=username, password=password,
                 first_name=first_name, last_name=last_name, email=email)
         user.lunchprofile.can_create_restaurants = can_create_restaurants
-        user.lunchprofile.avatar.save(str(uuid.uuid1()), avatar)
+        if avatar:
+            user.lunchprofile.avatar.save(str(uuid.uuid1()), avatar)
 
     user.save()
 
