@@ -7,13 +7,11 @@ var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $sc
   this.marker;
   this.restaurant = {};
 
-  window.onload = function() {
-    if (this.restaurantId) {
-      this.loadRestaurant(this.restaurantId);
-    } else {
-      this.initMap(this.getCurrentLocation());
-    }
-  }.bind(this);
+  if (this.restaurantId) {
+    this.loadRestaurant(this.restaurantId);
+  } else {
+    this.initMap(this.getCurrentLocation());
+  }
 };
 
 AdminRestaurantsController.prototype.initMap = function(center) {
