@@ -1,6 +1,7 @@
 # LunchLab
 
 *LunchLab* is a web app that helps hungry users find great spots to lunch.
+[Live](http://www.lunchlab.io)
 
 ## Core Features:
   - Users can sign in/up
