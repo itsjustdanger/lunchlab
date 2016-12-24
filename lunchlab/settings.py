@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-# from . import base_settings
+from . import base_settings
 
 import dj_database_url
 from boto.s3.connection import S3Connection
@@ -30,7 +30,7 @@ SECRET_KEY = 'aanjlc!p21c9cm%uzmmp69k#d)-e6=xv)0%pbc-js0gam+=mt4'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['young-oasis-28629.herokuapp.com']
+ALLOWED_HOSTS = ['young-oasis-28629.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -134,24 +134,19 @@ USE_TZ = True
 # Static/Media files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-# try:
-#     AWS_STORAGE_BUCKET_NAME = AWS['AWS_STORAGE_BUCKET_NAME']
-#     AWS_ACCESS_KEY_ID = AWS['AWS_ACCESS_KEY_ID']
-#     AWS_SECRET_ACCESS_KEY = AWS['AWS_SECRET_ACCESS_KEY']
-# except:
-    # AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
 AWS_ACCESS_KEY_ID = os.environ['S3_KEY']
 AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
-
+AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
 # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
 # This controls how the `static` template tag from `staticfiles` gets expanded, if you're using it.
 # We also use it in the next setting.
-AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET']
+
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
