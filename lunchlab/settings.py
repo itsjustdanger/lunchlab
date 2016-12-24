@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
-# from . import base_settings
+from . import base_settings
 
 import dj_database_url
 from boto.s3.connection import S3Connection
@@ -146,7 +146,7 @@ AWS_STORAGE_BUCKET_NAME = os.environ['S3_BUCKET'] if 'S3_BUCKET' in os.environ e
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
 MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 

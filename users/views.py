@@ -2,8 +2,8 @@ from django.shortcuts import render, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+import uuid
 
-# Create your views here.
 def auth(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -46,14 +46,14 @@ def create(request):
                 setattr(user, field, request.POST[field])
 
         if avatar:
-            user.lunchprofile.avatar = avatar
+            user.lunchprofile.avatar.save((str(uuid.uuid1()) + '.png'), avatar)
         if password:
             user.set_password(password)
     else:
         user = User.objects.create_user(username=username, password=password,
                 first_name=first_name, last_name=last_name, email=email)
         user.lunchprofile.can_create_restaurants = can_create_restaurants
-        user.lunchprofile.avatar = avatar
+        user.lunchprofile.avatar.save(str(uuid.uuid1()), avatar)
 
     user.save()
 
