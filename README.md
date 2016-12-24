@@ -31,6 +31,7 @@
   - Use 'visited', 'thumb-down', and categories to implement a 'recommendation-engine'
   - Replace admin created restaurants with auto-generated restaurants using Google Maps API
   - Implement restaurant search by category
+  - Add SSL cert
 
 ### Required Features:
   - [x] Keeps track of users' visited restaurants
@@ -45,7 +46,7 @@
   - [x] Users have a dashboard/feed with lunch options
 
 ## Deployment
-To deploy the app, it's recommended you create a virtual environment and use pip to load the requirements found in the requirements.txt file. Once you do that, you'll need to set three primary environment variables [S3_KEY, S3_SECRET, and S3_BUCKET] to handle media file uploads and downloads with S3.
+To deploy the app, it's recommended you create a virtual environment and use pip to load the requirements found in the requirements.txt file. Once you do that, you'll need to set three primary environment variables [S3_KEY, S3_SECRET, and S3_BUCKET] to handle media file uploads and downloads with S3. And don't forget to add a Django SECRET_KEY to the environment as well!
 
 You should then use `npm install` to load all the front end requirements and run the standard gulp action to process js/scss/assets to the `lunchlab/static` folder. Then, you'll likely want to run `python manage.py collectstatic` so django will load all your static files for you.
 
