@@ -1,4 +1,6 @@
 var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $scope) {
+  var currentLocation;
+
   this._adminRestaurantsService = adminRestaurantsService;
   this._$scope = $scope;
   this.map = undefined;
@@ -10,7 +12,7 @@ var AdminRestaurantsController = function(adminRestaurantsService, $timeout, $sc
   if (this.restaurantId) {
     this.loadRestaurant(this.restaurantId);
   } else {
-    this.initMap(this.getCurrentLocation());
+    this.initMap();
   }
 };
 
@@ -20,6 +22,10 @@ AdminRestaurantsController.prototype.initMap = function(center) {
 
   this.map = new google.maps.Map(mapEl,
     { zoom: 15, center: center });
+
+  if (!center) {
+    this.getCurrentLocation(this.map);
+  }
 
   this.searchBox = new google.maps.places.SearchBox(searchEl);
   this.searchBox.bindTo('bounds', this.map);
@@ -50,7 +56,7 @@ AdminRestaurantsController.prototype.getCurrentLocation = function(map) {
         lng: position.coords.longitude
       };
 
-      return pos;
+      map.setCenter(pos);
 
     }, function() {
       console.log('Error loading current location.');
