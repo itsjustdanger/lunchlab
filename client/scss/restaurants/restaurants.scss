@@ -22,7 +22,15 @@
 
 .visited_section {
   .no_user_visited_section {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     height: 460px;
+  }
+
+  .sign_in_cta {
+    color: $dark-blue;
+    font-size: 1.25em;
   }
 }
 
