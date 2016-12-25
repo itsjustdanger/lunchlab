@@ -1,6 +1,6 @@
 var Comment = function() {
   return {
-    templateUrl: '/static/templates/comments/comment.html',
+    templateUrl: '/staticfiles/templates/comments/comment.html',
     restrict: 'E',
     scope: {
       comment: '=data'

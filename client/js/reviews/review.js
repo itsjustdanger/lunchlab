@@ -1,6 +1,6 @@
 var Review = function() {
   return {
-    templateUrl: '/static/templates/reviews/review.html',
+    templateUrl: '/staticfiles/templates/reviews/review.html',
     restrict: 'E',
     scope: {
       review: '=data'
