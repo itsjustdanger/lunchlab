@@ -34,8 +34,11 @@ def new(request):
 
     data = json.loads(request.body.decode('utf-8'))
     restaurant = get_object_or_404(Restaurant, id=data['restaurantId'])
+    user_name = ''.join([user.first_name, ' ', user.last_name])
+    user_avatar_url = user.luncprofile.avatar.url if user.lunchprofile.avatar else None
     review = Review(title=data['title'], body=data['body'], user=user,
-                        restaurant=restaurant)
+                    restaurant=restaurant, user_name=user_name,
+                    user_avatar_url=user_avatar_url)
 
     try:
         review.save()

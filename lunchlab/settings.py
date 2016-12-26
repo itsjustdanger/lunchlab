@@ -28,7 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_KEY'] if 'SECRET_KEY' in os.environ else ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['www.lunchlab.io', 'lunchlab.herokuapp.com', 'lunchlab.io', 'localhost']
 

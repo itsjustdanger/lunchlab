@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from reviews.models import Review
 import uuid
 
 def auth(request):
@@ -47,6 +48,16 @@ def create(request):
 
         if avatar:
             user.lunchprofile.avatar.save((str(uuid.uuid1()) + '.png'), avatar)
+            reviews = Review.objects.filter(user_id=user.id)
+
+            """ We need to change the saved url for user profile images across
+            all reviews. We don't expect this to happen often, so this
+            optimizes the read-heavy nature of review objects.
+            """
+
+            for r in reviews:
+                r.user_avatar_url = user.lunchprofile.avatar.url
+                r.save()
         if password:
             user.set_password(password)
     else:
