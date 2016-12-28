@@ -7,6 +7,10 @@ from django.urls import reverse
 from restaurants.models import Restaurant
 
 def index(request):
+    """ Returns JSON list of restaurants that are not thumbs down-ed by the
+    current authenticated user (returns full list if no user). Tags restaurants
+    as 'visited' if they have been marked as visited by the current user.
+    """
     user = request.user if request.user.is_authenticated() else None
     visited = set(user.lunchprofile.visits.all()) if user else set()
     thumbs_down = set([r.id for r in user.lunchprofile.thumbsdowns.all()]) if user else set()
@@ -21,6 +25,11 @@ def index(request):
     return JsonResponse(restaurants, safe=False)
 
 def show(request, id):
+    """ Returns JSON object of restaurant requested by id. Tags restaurant as
+    visited if the user has marked the restaurant as visited and tags the
+    restaurant as user_reviewed if the user has submitted a review for the
+    restaurant.
+    """
     user = request.user if request.user.is_authenticated() else None
 
     try:
@@ -37,6 +46,9 @@ def show(request, id):
     return JsonResponse(restaurant, safe=False)
 
 def new(request):
+    """ Accepts JSON object for a new restaurant and saves it to the database.
+    Checks if user is both authenticated and authorized to create restaurants.
+    """
     user = request.user if request.user.is_authenticated() else None
     if not user.lunchprofile.can_create_restaurants:
         return HttpResponseForbidden
@@ -52,6 +64,9 @@ def new(request):
     return HttpResponse('OK')
 
 def edit(request, id):
+    """ Accepts JSON object for editing an existing restaurant by requested id
+    and saves changes to the database.
+    """
     data = json.loads(request.BODY)
     restaurant = get_object_or_404(Restaurant, id=id)
 
@@ -65,6 +80,10 @@ def edit(request, id):
     return HttpResponse('OK')
 
 def visit(request, id):
+    """ Accepts a basic POST request to asynchronously (on the front-end) mark
+    a restaurant as 'visited' by a given user. Adds the restaurant to the user's
+    visited restaurants.
+    """
     user = request.user if request.user.is_authenticated() else None
     restaurant = get_object_or_404(Restaurant, pk=id)
 
@@ -80,6 +99,8 @@ def visit(request, id):
     return HttpResponseBadRequest()
 
 def thumbs_down(request, id):
+    """ Accepts a basic POST request to asynchronously (on the front-end) mark a restaurant as 'thumb-down'ed by a user. This prevents restaurants from being displayed in recommendation lists.
+    """
     user = request.user if request.user.is_authenticated() else None
     restaurant = get_object_or_404(Restaurant, id=id)
 
