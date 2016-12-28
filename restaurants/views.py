@@ -99,7 +99,9 @@ def visit(request, id):
     return HttpResponseBadRequest()
 
 def thumbs_down(request, id):
-    """ Accepts a basic POST request to asynchronously (on the front-end) mark a restaurant as 'thumb-down'ed by a user. This prevents restaurants from being displayed in recommendation lists.
+    """ Accepts a basic POST request to asynchronously (on the front-end) mark
+    a restaurant as 'thumb-down'ed by a user. This prevents restaurants from
+    being displayed in recommendation lists.
     """
     user = request.user if request.user.is_authenticated() else None
     restaurant = get_object_or_404(Restaurant, id=id)

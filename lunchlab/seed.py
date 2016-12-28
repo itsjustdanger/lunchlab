@@ -87,7 +87,7 @@ def create_review(users, restaurants):
     restaurant = random.sample(restaurants, 1)[0]
     user.lunchprofile.visits.add(restaurant)
     user_name = ''.join([user.first_name, ' ', user.last_name])
-    user_avatar_url = user.avatar.url if user.avatar else None
+    user_avatar_url = user.lunchprofile.avatar.url if user.lunchprofile.avatar else None
     review = Review.objects.create( title=review_title, body=lorem,
                                     user=user, restaurant=restaurant, user_name=user_name,
                                     user_avatar_url=user_avatar_url)

@@ -4,11 +4,10 @@
       <span ng-if="review.isUserReview">
         Your review!
       </span>
-      <span ng-if="!review.isUserReview">{[review.userName]}'s review</span></h5>
-      {[review.userAvatarUrl]}
+      <span ng-if="!review.isUserReview">{[review.user.username]}'s review</span></h5>
     <div class="user_avatar_wrapper">
-      <img ng-if="review.userAvatarUrl" class="user_avatar" ng-src="review.userAvatarUrl" alt="User avatar">
-      <img ng-if="!review.userAvatarUrl" class="user_avatar" src="/staticfiles/assets/no-avatar.png" alt="User avatar">
+      <img ng-if="review.userAvatarUrl" class="user_avatar" src="{[review.userAvatarUrl]}" alt="User avatar">
+      <img ng-if="!review.userAvatarUrl" class="user_avatar" src="/static/assets/no-avatar.png" alt="User avatar">
     </div>
   </div>
 

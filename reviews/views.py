@@ -5,14 +5,15 @@ from reviews.models import Review
 from restaurants.models import Restaurant
 
 def index(request):
+    """ Returns a JSON list of reviews for the restaurant id indicated by 'restaurant' in the request's query string params. Tags reviews as 'isUserReview' if a review was created by the current authenticated user.
+    """
     user = request.user if request.user.is_authenticated() else None
     restaurant_id = request.GET.get('restaurant', '')
     reviews = []
 
-    for r in Review.objects.filter(restaurant_id=restaurant_id).prefetch_related('user'):
+    for r in Review.objects.filter(restaurant_id=restaurant_id):
         review = r.to_json()
         review['isUserReview'] = (user and user.id == r.user_id)
-        review['user'] = r.user.lunchprofile.to_json()
         reviews.append(review)
 
     return JsonResponse(reviews, safe=False)
@@ -35,7 +36,7 @@ def new(request):
     data = json.loads(request.body.decode('utf-8'))
     restaurant = get_object_or_404(Restaurant, id=data['restaurantId'])
     user_name = ''.join([user.first_name, ' ', user.last_name])
-    user_avatar_url = user.luncprofile.avatar.url if user.lunchprofile.avatar else None
+    user_avatar_url = user.lunchprofile.avatar.url if user.lunchprofile.avatar else None
     review = Review(title=data['title'], body=data['body'], user=user,
                     restaurant=restaurant, user_name=user_name,
                     user_avatar_url=user_avatar_url)
