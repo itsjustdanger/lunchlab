@@ -4,6 +4,9 @@ from restaurants.models import Restaurant
 from reviews.models import Review
 
 def restaurant_detail(request, id):
+    """ Pre-rendered restauranta detail page based on provided id. Queries for
+    reviews in advance to display on page load.
+    """
     user = request.user if request.user.is_authenticated() else None
 
     try:
