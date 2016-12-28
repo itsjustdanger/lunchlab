@@ -3,13 +3,14 @@
 {% block main %}
 <section>
   <a href="{% url 'new-restaurant' %}">Add New Restaurant</a>
-  
-  <ul>
+
+  <ul class="admin_restaurant_list">
     {% for restaurant in restaurants %}
-    <li>
-      <a href="{% url 'edit-restaurant' restaurant.id %}">
+    <li class="admin_restaurant_list_item">
+      <a class="admin_restaurant_link" href="{% url 'edit-restaurant' restaurant.id %}">
         <h4>{{restaurant.name}}</h4>
       </a>
+      <a class="restaurant_delete_button" href="{% url 'delete-restaurant' restaurant.id %}">Delete</a>
     </li>
     {% endfor %}
   </ul>

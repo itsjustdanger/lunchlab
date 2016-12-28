@@ -1,0 +1,17 @@
+.admin_restaurant_list {
+  padding: 25px;
+}
+
+.admin_restaurant_list_item {
+  align-items: center;
+  border-bottom: 1px solid $background-gray;
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin_restaurant_link,
+.restaurant_delete_button {
+  &:hover {
+    color: $light-blue;
+  }
+}
